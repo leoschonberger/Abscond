@@ -26,12 +26,13 @@ namespace Characters.Scripts
         var move = Vector2.zero;
 
         move.x = Input.GetAxis("Horizontal");
-        Debug.Log("hey");
 
         if (IsGrounded && Input.GetButtonDown("Jump"))
-        {
             Velocity.y = jumpTakeOffSpeed;
-            
+        else if (Input.GetButtonUp("Jump"))
+        {
+            if (Velocity.y>0)
+                Velocity.y *= .5f;
         }
 
         TargetVelocity = move * maxSpeed;

@@ -20,7 +20,8 @@ namespace Characters.Scripts
 
         protected const float MinMoveDistance = 0.001f;
         protected const float ShellRadius = 0.01f;
-    
+
+        protected bool isGravityEnabled = true;
         // Start is called before the first frame update
 
 
@@ -51,7 +52,11 @@ namespace Characters.Scripts
     
         void FixedUpdate()
         {
-            Velocity += Physics2D.gravity * (gravityModifier * Time.deltaTime);
+            if (isGravityEnabled)
+            {
+                Velocity += Physics2D.gravity * (gravityModifier * Time.deltaTime); 
+            }
+            
             Velocity.x = TargetVelocity.x;
         
             IsGrounded = false;//assumes you are not grounded at the beginning

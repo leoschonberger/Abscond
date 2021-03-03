@@ -1,5 +1,6 @@
-﻿using UnityEngine;
-using UnityEngine.UIElements;
+﻿using System;
+using UnityEngine;
+// ReSharper disable CompareOfFloatsByEqualityOperator
 
 namespace Characters.Scripts
 {
@@ -7,69 +8,76 @@ namespace Characters.Scripts
     {
         public float maxSpeed = 7;
         public float jumpTakeOffSpeed = 7;
+        
+        [Range(0.1f,0.5f)]
+        public float timeOfDash = 0.1f; 
+        [Range(14,56)]
+        public float speedOfDash = 14f; 
 
-        public float timeOfDash = 0.5f;
-        public float speedOfDash = 14f;
-
-        private float timeLeftInDash = 0f;
-        private Vector2 dashDirection = Vector2.zero;
+        private float _timeLeftInDash;
+        private Vector2 _dashDirection = Vector2.zero;
+        private bool _canWeDashAgain = true;
+        
         // Start is called before the first frame update
-        void Start()
-        {
-            ContactFilter.useTriggers= false;
-            ContactFilter.SetLayerMask(Physics2D.GetLayerCollisionMask(gameObject.layer));
-        
-            ContactFilter.useLayerMask = true;
-        }
-
-        protected override void OnStartUp()
-        {
-        
-        }
-        
 
         protected override void ComputeVelocity()
         {
         var move = Vector2.zero;
         move.x = Input.GetAxis("Horizontal");
-        
-        if (Input.GetKey(KeyCode.LeftShift) && timeLeftInDash == 0f)
+        move.y = Input.GetAxis("Vertical");
+        if (IsGrounded&& _timeLeftInDash ==0f )
         {
-            dashDirection.x = speedOfDash * move.x;
-            timeLeftInDash = timeOfDash;
+            _canWeDashAgain = true;
         }
-
-        
-
-        if (timeLeftInDash != 0f)
+        if (Input.GetKey(KeyCode.LeftShift) && _timeLeftInDash == 0f && _canWeDashAgain)
         {
             
-            DashMove(move);
-            if (timeLeftInDash <= 0f)
-            {
-                timeLeftInDash = 0f;
-                isGravityEnabled = true;
-            }
+            if (move.x != Vector2.zero.x) //Later add a buffer window
+                _dashDirection.x = Math.Abs(move.x) * (speedOfDash / move.x);
+            if (move.y != Vector2.zero.y)
+                _dashDirection.y = Math.Abs(move.y) * (speedOfDash / move.y);
+
+            _canWeDashAgain = false;
+            
+            _timeLeftInDash = timeOfDash;
+            
         }
-        
 
         if (IsGrounded && Input.GetButtonDown("Jump"))
-            Velocity.y = jumpTakeOffSpeed;
+            velocity.y = jumpTakeOffSpeed;
         else if (Input.GetButtonUp("Jump"))
         {
-            if (Velocity.y>0)
-                Velocity.y *= .5f;
+            if (velocity.y>0)
+                velocity.y *= .5f;
+        }
+        if (_timeLeftInDash != 0f)
+        {
+            _timeLeftInDash -= Time.deltaTime;
+            DashMove();
+            if (_timeLeftInDash <= 0f)
+            {
+                _timeLeftInDash = 0f;
+                _dashDirection = Vector2.zero;
+                IsGravityEnabled = true;
+                velocity.y = 0f;
+            }
+            return;
         }
 
         TargetVelocity = move * maxSpeed;
+        
         }
 
-        private void DashMove(Vector2 move)
+        private void DashMove()
         {
-            isGravityEnabled = false;
-            TargetVelocity.x = dashDirection.x;
-            Velocity.y = 0f;
-            timeLeftInDash -= Time.deltaTime;
+
+            IsGravityEnabled = false; //turns gravity off
+            TargetVelocity.x = _dashDirection.x;
+            Debug.Log(_dashDirection);
+            velocity.y = _dashDirection.y;
+            
         }
+        
+        
     }
 }

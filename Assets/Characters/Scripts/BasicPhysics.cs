@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Characters.Scripts
 {
@@ -12,16 +13,17 @@ namespace Characters.Scripts
         protected Vector2 GroundNormal;
 
         protected Vector2 TargetVelocity;
-        public Vector2 Velocity;
-        public Rigidbody2D Rb2d; //RigidBody2D is what allows us to move the character and the sprite around. 
+        [FormerlySerializedAs("Velocity")] public Vector2 velocity;
+        [FormerlySerializedAs("Rb2d")] public Rigidbody2D rb2d; //This RigidBody2D is what allows us to move the character and the sprite around. 
+        [FormerlySerializedAs("Rb2dThatWeCast")] public Rigidbody2D rb2dThatWeCast; //This RigidBody checks for collisions, but only with the one collider we want it to check with.
         protected ContactFilter2D ContactFilter;
         protected RaycastHit2D[] HitBuffer = new RaycastHit2D[16];
-        protected List<RaycastHit2D> hitBufferList = new List<RaycastHit2D>(16);
+        protected List<RaycastHit2D> HitBufferList = new List<RaycastHit2D>(16);
 
         protected const float MinMoveDistance = 0.001f;
         protected const float ShellRadius = 0.01f;
 
-        protected bool isGravityEnabled = true;
+        protected bool IsGravityEnabled = true;
         // Start is called before the first frame update
 
 
@@ -37,11 +39,8 @@ namespace Characters.Scripts
         
             ContactFilter.useLayerMask = true;
         }
-    
-        protected virtual void ComputeVelocity() //Overriden in player controller
-        {
-        
-        }
+
+        protected virtual void ComputeVelocity(){} //Overriden in player controller
         // Update is called once per frame
         void Update()
         {
@@ -52,16 +51,15 @@ namespace Characters.Scripts
     
         void FixedUpdate()
         {
-            if (isGravityEnabled)
-            {
-                Velocity += Physics2D.gravity * (gravityModifier * Time.deltaTime); 
-            }
+            if (IsGravityEnabled)
+                velocity += Physics2D.gravity * (gravityModifier * Time.deltaTime); 
             
-            Velocity.x = TargetVelocity.x;
+            
+            velocity.x = TargetVelocity.x;
         
             IsGrounded = false;//assumes you are not grounded at the beginning
 
-            var deltaPosition = Velocity * Time.deltaTime; //this is the change in position on the next update
+            var deltaPosition = velocity * Time.deltaTime; //this is the change in position on the next update
             
             var moveAlongGround = new Vector2(GroundNormal.y, -GroundNormal.x); //reversing the normal to tell character what direction they should move up slope
 
@@ -86,21 +84,21 @@ namespace Characters.Scripts
                 distance = ModifyDistance(move, distance, yMovement); //collision detection
             }
             
-            Rb2d.position += move.normalized*distance; //actually moves the rigidbody
+            rb2d.position += move.normalized*distance; //actually moves the rigidbody
         }
 
         private float ModifyDistance(Vector2 move, float distance, bool yMovement)
         {
         
-            var count= Rb2d.Cast(move, ContactFilter, HitBuffer, distance + ShellRadius); //Counts the colliders we will contact within the next frame
-            hitBufferList.Clear();
+            var count= rb2dThatWeCast.Cast(move, ContactFilter, HitBuffer, distance + ShellRadius); //Counts the colliders we will contact within the next frame
+            HitBufferList.Clear();
             for (int i = 0; i < count; i++)
-                hitBufferList.Add(HitBuffer[i]);
+                HitBufferList.Add(HitBuffer[i]);
        
             for (int i = 0; i < count; i++)
             {
-            
-                var currentNormal = hitBufferList[i].normal;
+                //Debug.Log(hitBufferList[i].collider.name);
+                var currentNormal = HitBufferList[i].normal;
                 if (currentNormal.y > minGroundNormalY) //checks if you are on the ground or not
                 {
                     IsGrounded = true;
@@ -113,14 +111,14 @@ namespace Characters.Scripts
                 }
 
                 var projection =
-                    Vector2.Dot(Velocity,
+                    Vector2.Dot(velocity,
                         currentNormal); //Projects  to find whether we are about to clip through the ground
                 if (projection < 0) //If we will clip into ground next frame, change velocity so that won't happen.
                 {
-                    Velocity -= projection * currentNormal;
+                    velocity -= projection * currentNormal;
                 }
 
-                var modifiedDistance = hitBufferList[i].distance - ShellRadius;
+                var modifiedDistance = HitBufferList[i].distance - ShellRadius;
                 distance = modifiedDistance < distance
                     ? modifiedDistance
                     : distance; //If distance is greater than modified distance, we change it to become modified distance, preventing clipping

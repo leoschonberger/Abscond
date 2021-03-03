@@ -16,8 +16,8 @@ TagManager:
   - Player
   - Enemies
   - HurtBox
-  - 
-  - 
+  - HitBox
+  - Dummy layer
   - 
   - 
   - 

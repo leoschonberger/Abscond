@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using Characters.Scripts;
 using UnityEngine;
 
 public class KillPlayer : MonoBehaviour
@@ -21,7 +19,7 @@ public class KillPlayer : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        other.GetComponent<hurtBoxInteractions>().setTransform(respawnLocation);
+        other.GetComponent<HurtBoxInteractions>().SetTransform(respawnLocation);
         //Debug.Log("yay!");
         //throw new NotImplementedException();
     }

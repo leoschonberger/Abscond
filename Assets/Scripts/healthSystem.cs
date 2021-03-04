@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class healthSystem : MonoBehaviour
+public class HealthSystem : MonoBehaviour
 {
 	    public int startingHealth = 100;
 		public int warningHealth = 10;

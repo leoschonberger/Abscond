@@ -23,12 +23,12 @@ public class BasicAttack : MonoBehaviour
         if (Input.GetKey(KeyCode.P) && !isCooldown)
         {
             attackCollider.enabled = true;
-            Debug.Log("The Collider has been enabled");
+            //Debug.Log("The Collider has been enabled");
         }
         else if(attackCollider.enabled == true)
         {
             attackCollider.enabled = false;
-            Debug.Log("The Collider has been disabled");
+            //Debug.Log("The Collider has been disabled");
         }
     }
     

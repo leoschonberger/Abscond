@@ -23,6 +23,8 @@ namespace Characters.Scripts
         protected const float MinMoveDistance = 0.001f;
         protected const float ShellRadius = 0.01f;
 
+        protected bool inBulletTime = false;
+
         protected bool IsGravityEnabled = true;
         // Start is called before the first frame update
 
@@ -51,9 +53,10 @@ namespace Characters.Scripts
     
         void FixedUpdate()
         {
+            if (inBulletTime)
+                return;
             if (IsGravityEnabled)
-                velocity += Physics2D.gravity * (gravityModifier * Time.deltaTime); 
-            
+                velocity += Physics2D.gravity * (gravityModifier * Time.deltaTime);
             
             velocity.x = TargetVelocity.x;
         
@@ -72,9 +75,7 @@ namespace Characters.Scripts
             Movement(move, true); //moves along y
         
         }
-
         
-    
         void Movement(Vector2 move, bool yMovement)
         {
             var distance = move.magnitude;
@@ -126,5 +127,15 @@ namespace Characters.Scripts
 
             return distance;
         } // this is the most complicated part, I don't want to completely just copy what I had right now
+        public virtual void EnterBulletTime()
+        {
+            inBulletTime = true;
+        }
+
+        public virtual void ExitBulletTime()
+        {
+            inBulletTime = false;
+        }
     }
+    
 }

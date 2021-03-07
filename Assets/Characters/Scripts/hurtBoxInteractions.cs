@@ -2,7 +2,7 @@
 
 namespace Characters.Scripts
 {
-    public class HurtBoxInteractions : MonoBehaviour
+    public class hurtBoxInteractions : MonoBehaviour
     {
         public Transform playerTransform;
         // Start is called before the first frame update

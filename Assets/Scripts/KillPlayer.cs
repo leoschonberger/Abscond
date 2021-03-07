@@ -19,7 +19,7 @@ public class KillPlayer : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        other.GetComponent<HurtBoxInteractions>().SetTransform(respawnLocation);
+        other.GetComponent<hurtBoxInteractions>().SetTransform(respawnLocation);
         //Debug.Log("yay!");
         //throw new NotImplementedException();
     }

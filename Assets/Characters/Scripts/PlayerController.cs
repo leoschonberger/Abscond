@@ -1,4 +1,5 @@
 ﻿using System;
+using Unity.Mathematics;
 using UnityEngine;
 // ReSharper disable CompareOfFloatsByEqualityOperator
 
@@ -11,20 +12,24 @@ namespace Characters.Scripts
         public float maxSpeed = 7;
         public float jumpTakeOffSpeed = 7;
         
-        [Range(0.1f,0.5f)]
-        public float timeOfDash = 0.1f; 
-        [Range(14,56)]
-        public float speedOfDash = 14f;
+        [Range(0.1f,0.5f)] public float timeOfDash = 0.1f; 
+        [Range(14,56)] public float speedOfDash = 14f;
+        [Range(14, 56)] public float attackStrength = 14f;
         
         private float _timeLeftInDash;
         private Vector2 _dashDirection = Vector2.zero;
         private bool _canWeDashAgain = true;
 
+        private bool exitedBulletTime = false;
         protected override void ComputeVelocity()
         {
             if (inBulletTime)
                 return;
-            
+            if (exitedBulletTime)
+            {
+                exitedBulletTime = false;
+                return;
+            }
             var move = Vector2.zero;
             move.x = Input.GetAxis("Horizontal");
             move.y = Input.GetAxis("Vertical");
@@ -85,7 +90,6 @@ namespace Characters.Scripts
         {
             base.EnterBulletTime();
             arm.SetActive(true);
-            
         }
 
         public override void ExitBulletTime()
@@ -95,6 +99,57 @@ namespace Characters.Scripts
             _timeLeftInDash = 0;
             velocity = Vector2.zero;
             TargetVelocity = Vector2.zero; //we make sure to cancel our velocity here
+            
+            var angle= GetMouseAngle.MouseAngle(transform) +180;
+            
+            var attackVelocity = new Vector2((float)Math.Cos(angle)*attackStrength, //*Mathf.Rad2Deg
+            (float)Math.Sin(angle)*attackStrength);
+            
+            Debug.Log(angle);
+            //Debug.Log(attackVelocity);
+            //attackVelocity = Quaternion.AngleAxis(angle , Vector3.up) * attackVelocity;
+            Debug.Log(attackVelocity);
+            
+            velocity = attackVelocity;
+            //exitedBulletTime = true;
+        }
+
+        protected override void SetHorizontalVelocity()
+        {
+            if (IsGrounded && math.abs(velocity.x)<=maxSpeed)
+            {
+                base.SetHorizontalVelocity();
+                return;
+            }
+            
+            
+            //This could use some cleaning up.
+            if (math.abs(velocity.x)<=maxSpeed)
+            {
+                velocity.x += TargetVelocity.x / 2;
+                if (math.abs(velocity.x)>maxSpeed)
+                {
+                    if (velocity.x < 0)
+                        velocity.x = -maxSpeed;
+
+                    else
+                        velocity.x = maxSpeed;
+
+                }
+                return;
+            }
+            if (velocity.x<0 && TargetVelocity.x>0) //If we are headed backwards and but want to move forwards
+            {
+                if (velocity.x<-maxSpeed) //If our velocity is greater in magnitude than the max speed allowed
+                    velocity.x += TargetVelocity.x/2;
+            }
+            else if (velocity.x>0 && TargetVelocity.x<0)
+            {
+                if (velocity.x>maxSpeed)
+                    velocity.x += TargetVelocity.x / 2;
+            }
+            
+            
         }
     }
 }

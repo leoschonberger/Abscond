@@ -27,7 +27,7 @@ public class BasicAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.P) && !_isCooldown)
+        if (Input.GetMouseButton(0)&& !_isCooldown)
         {
             attackCollider.enabled = true;
             hitboxSprite.enabled = true;

@@ -136,12 +136,12 @@ PrefabInstance:
     - target: {fileID: 339490138789019765, guid: d62a173eb0b20694aa59062a0c906ce0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.48
+      value: 11.77
       objectReference: {fileID: 0}
     - target: {fileID: 339490138789019765, guid: d62a173eb0b20694aa59062a0c906ce0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.25
+      value: -5.8
       objectReference: {fileID: 0}
     - target: {fileID: 339490138789019765, guid: d62a173eb0b20694aa59062a0c906ce0,
         type: 3}
@@ -472,6 +472,7 @@ MonoBehaviour:
   jumpTakeOffSpeed: 7
   timeOfDash: 0.1
   speedOfDash: 28
+  attackStrength: 14
 --- !u!50 &1085976202
 Rigidbody2D:
   serializedVersion: 4
@@ -575,7 +576,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1373867798}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.89, y: 11.49, z: 0}
+  m_LocalPosition: {x: -5.04, y: 17.72, z: 0}
   m_LocalScale: {x: 0.108862825, y: 2.9676692, z: 1}
   m_Children: []
   m_Father: {fileID: 166710534}
@@ -754,7 +755,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62f60c882bd139448bf7d68201548703, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTransform: {fileID: 0}
+  playerTransform: {fileID: 2502741868877180492}
 --- !u!1 &1585165971
 GameObject:
   m_ObjectHideFlags: 0
@@ -1293,12 +1294,12 @@ PrefabInstance:
     - target: {fileID: 6293120865215213681, guid: 3ecd9a23dbecd174aabb25a3bf03866b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.268
+      value: -1.24
       objectReference: {fileID: 0}
     - target: {fileID: 6293120865215213681, guid: 3ecd9a23dbecd174aabb25a3bf03866b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.644
+      value: -5.83
       objectReference: {fileID: 0}
     - target: {fileID: 6293120865215213681, guid: 3ecd9a23dbecd174aabb25a3bf03866b,
         type: 3}

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -56,10 +58,12 @@ namespace Characters.Scripts
             if (inBulletTime)
                 return;
             if (IsGravityEnabled)
-                velocity += Physics2D.gravity * (gravityModifier * Time.deltaTime);
-            
-            velocity.x = TargetVelocity.x;
-        
+                velocity += Physics2D.gravity * (gravityModifier * Time.deltaTime); //serves as friction as well
+
+            SetHorizontalVelocity();
+
+            //Debug.Log(velocity);
+
             IsGrounded = false;//assumes you are not grounded at the beginning
 
             var deltaPosition = velocity * Time.deltaTime; //this is the change in position on the next update
@@ -88,6 +92,14 @@ namespace Characters.Scripts
             rb2d.position += move.normalized*distance; //actually moves the rigidbody
         }
 
+        protected virtual void SetHorizontalVelocity()
+        {
+            
+            velocity.x = TargetVelocity.x;
+            
+
+        }
+
         private float ModifyDistance(Vector2 move, float distance, bool yMovement)
         {
         
@@ -104,7 +116,7 @@ namespace Characters.Scripts
                 {
                     IsGrounded = true;
                 
-                    if (yMovement) //if moving on y axis and grounded, we set the current normal to be straight up and down (don't want to be affected by slopes)
+                    if (yMovement) //if moving on y axis and grounded, we set the current normal to be straight up and down (don't want vertical movement to be affected by slopes)
                     {
                         GroundNormal = currentNormal;
                         currentNormal.x = 0;

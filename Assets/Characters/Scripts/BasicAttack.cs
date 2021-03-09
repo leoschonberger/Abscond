@@ -12,10 +12,9 @@ public class BasicAttack : MonoBehaviour
     private bool _isCooldown = false;
 
     public BoxCollider2D attackCollider;
-
     public SpriteRenderer hitboxSprite;
-
     public PlayerController playerPhysics;
+   
     // Start is called before the first frame update
     void Start()
     {

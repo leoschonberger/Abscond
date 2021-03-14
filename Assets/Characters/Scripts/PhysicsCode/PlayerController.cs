@@ -1,9 +1,10 @@
 ﻿using System;
 using Unity.Mathematics;
 using UnityEngine;
+
 // ReSharper disable CompareOfFloatsByEqualityOperator
 
-namespace Characters.Scripts
+namespace Characters.Scripts.PhysicsCode
 {
     public class PlayerController : BasicPhysics
     {
@@ -68,6 +69,7 @@ namespace Characters.Scripts
                     _dashDirection = Vector2.zero;
                     IsGravityEnabled = true;
                     velocity.y = 0f;
+                    velocity.x = 0f;
                 }
                 return;
         }
@@ -96,14 +98,14 @@ namespace Characters.Scripts
         {
             base.ExitBulletTime();
             arm.SetActive(false);
-            _timeLeftInDash = 0;
+            _timeLeftInDash = 0; //Resets our dash!
             velocity = Vector2.zero;
             TargetVelocity = Vector2.zero; //we make sure to cancel our velocity here
             
             var angle= GetMouseAngle.MouseAngle(transform) +180;
             
-            var attackVelocity = new Vector2((float)Math.Cos(angle)*attackStrength, //*Mathf.Rad2Deg
-            (float)Math.Sin(angle)*attackStrength);
+            var attackVelocity = new Vector2((float)(Math.Cos(angle*Mathf.Deg2Rad))*attackStrength, //*Mathf.Rad2Deg
+            (float)(Math.Sin(angle*Mathf.Deg2Rad))*attackStrength);
             
             Debug.Log(angle);
             //Debug.Log(attackVelocity);
@@ -114,20 +116,44 @@ namespace Characters.Scripts
             //exitedBulletTime = true;
         }
 
-        protected override void SetHorizontalVelocity()
+        protected override void SetHorizontalVelocity() 
+        
         {
-            if (IsGrounded && math.abs(velocity.x)<=maxSpeed)
+            
+            
+            
+            if (IsGrounded && math.abs(velocity.x)<=maxSpeed || !IsGravityEnabled)
             {
+                
                 base.SetHorizontalVelocity();
                 return;
             }
+
+
+            if (IsGrounded&& TargetVelocity.x==0f)
+            {
+                if (velocity.x<0)
+                {
+                    velocity.x += maxSpeed/4;
+                }
+
+                if (velocity.x>0)//program in friction on the ground eventuaally
+                {
+                    velocity.x -= maxSpeed / 4;
+                    
+                    
+                }
+                
+                //add check if we went past zero
+            }
+            
             
             
             //This could use some cleaning up.
             if (math.abs(velocity.x)<=maxSpeed)
             {
                 velocity.x += TargetVelocity.x / 2;
-                if (math.abs(velocity.x)>maxSpeed)
+                if (math.abs(velocity.x)>maxSpeed) // checks if we went past zero
                 {
                     if (velocity.x < 0)
                         velocity.x = -maxSpeed;
@@ -138,17 +164,18 @@ namespace Characters.Scripts
                 }
                 return;
             }
+            
             if (velocity.x<0 && TargetVelocity.x>0) //If we are headed backwards and but want to move forwards
             {
                 if (velocity.x<-maxSpeed) //If our velocity is greater in magnitude than the max speed allowed
-                    velocity.x += TargetVelocity.x/2;
+                    velocity.x += TargetVelocity.x/4;
             }
             else if (velocity.x>0 && TargetVelocity.x<0)
             {
                 if (velocity.x>maxSpeed)
-                    velocity.x += TargetVelocity.x / 2;
+                    velocity.x += TargetVelocity.x / 4;
             }
-            
+
             
         }
     }

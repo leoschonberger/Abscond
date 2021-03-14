@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using Unity.Mathematics;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Characters.Scripts
+namespace Characters.Scripts.PhysicsCode
 {
     public class BasicPhysics : MonoBehaviour
     {
@@ -12,7 +10,7 @@ namespace Characters.Scripts
         public float gravityModifier = 1f;
 
         protected bool IsGrounded;
-        protected Vector2 GroundNormal;
+        protected Vector2 GroundNormal = Vector2.up;
 
         protected Vector2 TargetVelocity;
         [FormerlySerializedAs("Velocity")] public Vector2 velocity;
@@ -26,17 +24,13 @@ namespace Characters.Scripts
         protected const float ShellRadius = 0.01f;
 
         protected bool inBulletTime = false;
+        protected bool inBounceMode = false;
 
         protected bool IsGravityEnabled = true;
         // Start is called before the first frame update
 
 
         void Start()
-        {
-            OnStartUp();
-        }
-
-        protected virtual void OnStartUp()
         {
             ContactFilter.useTriggers= false;
             ContactFilter.SetLayerMask(Physics2D.GetLayerCollisionMask(gameObject.layer));
@@ -71,6 +65,12 @@ namespace Characters.Scripts
             var moveAlongGround = new Vector2(GroundNormal.y, -GroundNormal.x); //reversing the normal to tell character what direction they should move up slope
 
             var move = moveAlongGround * deltaPosition.x; //this is how far we want to move along x
+
+            if (inBounceMode) //do bounce physics when you are in bounce mode
+            {
+                bouncePhysics(move);
+                return;
+            }
         
             Movement(move, false); //moves along x
         
@@ -80,9 +80,11 @@ namespace Characters.Scripts
         
         }
         
+        protected virtual void bouncePhysics(Vector2 move){}
+        
         void Movement(Vector2 move, bool yMovement)
         {
-            var distance = move.magnitude;
+            var distance = move.magnitude; //Saves the speed, which is going to be changed when we modify the distance
 
             if (distance > MinMoveDistance) //If gameobject is moving perform extra check
             {
@@ -112,6 +114,7 @@ namespace Characters.Scripts
             {
                 //Debug.Log(hitBufferList[i].collider.name);
                 var currentNormal = HitBufferList[i].normal;
+                GroundNormal = currentNormal;
                 if (currentNormal.y > minGroundNormalY) //checks if you are on the ground or not
                 {
                     IsGrounded = true;
@@ -122,6 +125,8 @@ namespace Characters.Scripts
                         currentNormal.x = 0;
                     }
                 }
+
+                
 
                 var projection =
                     Vector2.Dot(velocity,

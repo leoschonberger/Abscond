@@ -25,7 +25,7 @@ namespace Characters.Scripts
             if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Player"))
             {
                 other.GetComponent<Health>().TakeDamage(damage);
-                Debug.Log("Damage given to: " + other.gameObject.name + "From :" + this.gameObject.name + " HP is now: " + other.GetComponent<Health>().currentHp);
+                //Debug.Log("Damage given to: " + other.gameObject.name + "From :" + this.gameObject.name + " HP is now: " + other.GetComponent<Health>().currentHp);
             }
         }
     }

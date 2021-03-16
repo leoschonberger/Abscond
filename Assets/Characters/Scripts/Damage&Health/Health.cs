@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 namespace Characters.Scripts
 {
@@ -9,6 +10,8 @@ namespace Characters.Scripts
         public int currentHp;
         public bool isDead = false;
         public Text hpUiBox;
+        public Vector2 updatedRespawnPoint;
+        public GameObject player;
 
 
         // Start is called before the first frame update
@@ -24,14 +27,14 @@ namespace Characters.Scripts
         {
             CheckDeath();
         } 
-        //Allows gameObject to take damage
+        //Allows gameObject to take damage, subtracted from currentHp
        public void TakeDamage(int damageToTake)
         {
             currentHp -= damageToTake;
             UpdatehpUiBox();
         }
        
-       //Healing: included just in case we want to add it in later
+       //Healing: Adds hpToHeal to currentHp
        public void Heal(int hpToHeal)
         {
             currentHp += hpToHeal;
@@ -43,8 +46,17 @@ namespace Characters.Scripts
             {
                 isDead = true;
                 Debug.Log(gameObject.name + "Has died");
-                //Play Death Animation
-                // Open Respawn Menu
+                if (player.tag == "Player")
+                {
+                    //TODO: Make PLayer Death Animation
+                   //TODO: Implement Respawn Menu
+                   Respawn();  
+                }
+                else if (player.tag == "Enemy")
+                {
+                    //TODO: Make Enemy Death Animation
+                    Destroy(player);
+                }
             }
         }
        
@@ -54,5 +66,16 @@ namespace Characters.Scripts
             String hpText = gameObject.name + " HP: " + currentHp;
             hpUiBox.text = hpText;
         }
+
+       //Heals Player to maxHp, sets location to last respawn point, and resets isDead.
+       private void Respawn()
+       {
+           Debug.Log("Respawning Player");
+           Heal(maxHp);
+           Debug.Log("Player has regained health");
+           player.transform.position = updatedRespawnPoint;
+           isDead = false;
+
+       }
     }
 }

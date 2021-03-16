@@ -90,6 +90,9 @@ namespace Characters.Scripts.PhysicsCode
             {
                 distance = ModifyDistance(move, distance, yMovement); //collision detection
             }
+
+            
+            //Debug.Log();
             
             rb2d.position += move.normalized*distance; //actually moves the rigidbody
         }
@@ -114,7 +117,7 @@ namespace Characters.Scripts.PhysicsCode
             {
                 //Debug.Log(hitBufferList[i].collider.name);
                 var currentNormal = HitBufferList[i].normal;
-                GroundNormal = currentNormal;
+                //GroundNormal = currentNormal;
                 if (currentNormal.y > minGroundNormalY) //checks if you are on the ground or not
                 {
                     IsGrounded = true;
@@ -131,12 +134,17 @@ namespace Characters.Scripts.PhysicsCode
                 var projection =
                     Vector2.Dot(velocity,
                         currentNormal); //Projects  to find whether we are about to clip through the ground
-                if (projection < 0) //If we will clip into ground next frame, change velocity so that won't happen.
+                if (projection < 0 ) //If we will clip into ground next frame, change velocity so that won't happen.
                 {
+                    //Debug.Log(projection);
                     velocity -= projection * currentNormal;
+                    //Debug.Log(velocity.x);
                 }
 
+                
+
                 var modifiedDistance = HitBufferList[i].distance - ShellRadius;
+                
                 distance = modifiedDistance < distance
                     ? modifiedDistance
                     : distance; //If distance is greater than modified distance, we change it to become modified distance, preventing clipping

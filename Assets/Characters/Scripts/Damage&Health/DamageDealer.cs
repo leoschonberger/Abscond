@@ -7,18 +7,7 @@ namespace Characters.Scripts
     {
         public int damage = 10;
         public BoxCollider2D attackCollider;
-        
-        // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
 
-        // Update is called once per frame
-        void Update()
-        {
-        
-        }
         // Checks to see if object is an enemy or player, then sends damage.
         private void OnTriggerEnter2D(Collider2D other)
         {

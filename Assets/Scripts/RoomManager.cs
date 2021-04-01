@@ -12,6 +12,7 @@ public class RoomManager : MonoBehaviour
     private GameObject player;
     public Vector2 respawnPointVector;
 
+    //get Player instance in scene
     private void Start()
     {
         player = GameObject.FindWithTag("Player");
@@ -25,7 +26,7 @@ public class RoomManager : MonoBehaviour
         
     }
 
-    //Sets new respawnPoint for the newly entered room
+    //Sets new respawnPoint for the newly entered room based on child object
     private void OnTriggerEnter2D(Collider2D other)
     {
         respawnPointVector = roomRespawnPoint.transform.position;

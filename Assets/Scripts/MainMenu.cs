@@ -6,7 +6,7 @@ public class MainMenu : MonoBehaviour
 {
     public void playGame()
     {
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadScene("Level 1 Tiled");
     }
     public void QuitGame()
     {

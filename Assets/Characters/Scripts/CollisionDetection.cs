@@ -19,13 +19,22 @@ namespace Characters.Scripts
     
         private void OnTriggerEnter2D(Collider2D collision)
         {
+            if (collision.gameObject.layer == 15)
+            {
+                return;
+            }
+
             enemyPhysics.EnterBulletTime();
-        
-            //Debug.Log(collision.gameObject.name + " : " + gameObject.name + " : " + Time.time);
+
+                //Debug.Log(collision.gameObject.name + " : " + gameObject.name + " : " + Time.time);
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
+            if (other.gameObject.layer == 15)
+            {
+                return;
+            }
             enemyPhysics.ExitBulletTime();
             //Debug.Log("this actually works");
             //throw new NotImplementedException();

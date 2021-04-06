@@ -20,6 +20,7 @@ namespace Characters.Scripts.PhysicsCode
 
         protected override void ComputeVelocity()
         {
+			enemyMovement();
             if (timeLeftInBounce > 0)
             {
                 timeLeftInBounce -= Time.deltaTime;
@@ -36,6 +37,10 @@ namespace Characters.Scripts.PhysicsCode
 
             
         }
+		protected virtual void enemyMovement ()
+		{
+
+		}
 
         public override void ExitBulletTime()
         {

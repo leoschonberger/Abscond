@@ -13,21 +13,25 @@ namespace Characters.Scripts.PhysicsCode
     	{
 	        if (IsGrounded)
 	        {
-		        if (velocity.x == 0)
-		        {
-			        horizontalSpeed *= -1;
-			        Debug.Log(horizontalSpeed);
-			        TargetVelocity.x = horizontalSpeed;
-			        Debug.Log(TargetVelocity.x);
-		        }
+		        
 		        TargetVelocity.x = horizontalSpeed;
 	        }
         }
 
+		public void reverseDirection()
+		{
+			horizontalSpeed *= -1;
+		}
+
 		void OnTriggerEnter2D(Collider2D collider)
 		{
-			if (collider.gameObject.layer == 15)
+			Debug.Log(collider.gameObject.layer);
+			if (collider.gameObject.layer == 14)
+			{
 				horizontalSpeed *= -1;
+				Debug.Log("hello");
+			}
+				
 		}
 	}
 }

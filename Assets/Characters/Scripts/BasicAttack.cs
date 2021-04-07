@@ -52,6 +52,7 @@ namespace Characters.Scripts
 
         private void OnTriggerEnter2D(Collider2D other)
         {
+            
             //Debug.Log(other.name);
             playerPhysics.EnterBulletTime();
             //Debug.Log("hit the enemy");

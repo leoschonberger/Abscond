@@ -110,7 +110,7 @@ namespace Characters.Scripts.PhysicsCode
             
             //Debug.Log(move);
             move = velocity* Time.deltaTime;
-            Debug.Log(move);
+            //Debug.Log(move);
             //Step 5: Move the player
             rb2d.position += move; //Moves the player
 
@@ -164,6 +164,8 @@ namespace Characters.Scripts.PhysicsCode
             
             //base.SetHorizontalVelocity();
         }
+        
+        
         
     }
 }

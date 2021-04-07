@@ -6,20 +6,10 @@ namespace Characters.Scripts
     public class CollisionDetection : MonoBehaviour
     {
         public EnemyPhysics enemyPhysics;
-        // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
 
-        // Update is called once per frame
-        void Update()
+        protected virtual void OnTriggerEnter2D(Collider2D collision)
         {
-        }
-    
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
-            if (collision.gameObject.layer == 15)
+            if (collision.gameObject.layer == 14)
             {
                 return;
             }
@@ -31,7 +21,7 @@ namespace Characters.Scripts
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            if (other.gameObject.layer == 15)
+            if (other.gameObject.layer == 14)
             {
                 return;
             }
@@ -39,5 +29,7 @@ namespace Characters.Scripts
             //Debug.Log("this actually works");
             //throw new NotImplementedException();
         }
+        
+        
     }
 }

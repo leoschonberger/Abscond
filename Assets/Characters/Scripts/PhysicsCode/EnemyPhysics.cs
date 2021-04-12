@@ -51,6 +51,7 @@ namespace Characters.Scripts.PhysicsCode
             
             var attackVelocity = new Vector2((float)Math.Cos(currentAngle*Mathf.Deg2Rad)*speedOfLaunch, //*Mathf.Rad2Deg
                 (float)Math.Sin(currentAngle*Mathf.Deg2Rad)*speedOfLaunch);
+            //Debug.Log();
             velocity = attackVelocity;
             timeLeftInBounce = bounceLength;
             inBounceMode = true; //Tells physics engine to pay attention to bounce mode.

@@ -97,7 +97,7 @@ MonoBehaviour:
   velocity: {x: 0, y: 0}
   rb2d: {fileID: 183173961}
   rb2dThatWeCast: {fileID: 646807545}
-  speedOfLaunch: 28
+  speedOfLaunch: 14
   frictionValue: 7
   bounceLength: 0.3
   attackStrength: 28
@@ -382,7 +382,7 @@ PrefabInstance:
     - target: {fileID: 5452488584983716978, guid: d9b47c4dba74d0c4c8ba9b1c4bdde881,
         type: 3}
       propertyPath: m_Name
-      value: Goomba
+      value: Goomba Variant
       objectReference: {fileID: 0}
     - target: {fileID: 5452488584983716978, guid: d9b47c4dba74d0c4c8ba9b1c4bdde881,
         type: 3}

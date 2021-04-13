@@ -1511,7 +1511,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 570194629}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.9, y: 0.62, z: -13138.234}
+  m_LocalPosition: {x: 0, y: 0, z: -13138.234}
   m_LocalScale: {x: 10.408827, y: 10.408827, z: 10.408827}
   m_Children: []
   m_Father: {fileID: 769987670}
@@ -1561,6 +1561,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 619341217}
+  startTimeBetweenShots: 2
   bulletPrefab: {fileID: 991741043290225610, guid: d4c74d22a10b2134490bd3eaf9efa285,
     type: 3}
 --- !u!1 &625147953
@@ -3745,7 +3746,7 @@ GameObject:
   - component: {fileID: 1538096534}
   - component: {fileID: 1538096533}
   m_Layer: 8
-  m_Name: Physics Collider Player
+  m_Name: PCP
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

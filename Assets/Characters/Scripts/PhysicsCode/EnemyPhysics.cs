@@ -12,10 +12,10 @@ namespace Characters.Scripts.PhysicsCode
         public float bounceLength = 0.3f;
         public float attackStrength = 28f;
 
+        public Transform playerTransform;
         private float timeLeftInBounce = 0f;
         [SerializeField] private float currentAngle = 0f;
-        
-        
+
         // ReSharper disable CompareOfFloatsByEqualityOperator
 
         protected override void ComputeVelocity()
@@ -34,20 +34,20 @@ namespace Characters.Scripts.PhysicsCode
                     currentAngle = 0; //resets the current angle
                 }
             }
+            GroundedCheck();
 
             
         }
-		protected virtual void enemyMovement ()
-		{
-
-		}
+		protected virtual void enemyMovement () {}
+        
 
         public override void ExitBulletTime()
         {
             base.ExitBulletTime();
             velocity = Vector2.zero;
             TargetVelocity = Vector2.zero;
-            currentAngle= GetMouseAngle.MouseAngle(transform);
+            currentAngle= GetMouseAngle.MouseAngle(playerTransform);
+            Debug.Log("mouse angle: "+currentAngle);
             
             var attackVelocity = new Vector2((float)Math.Cos(currentAngle*Mathf.Deg2Rad)*speedOfLaunch, //*Mathf.Rad2Deg
                 (float)Math.Sin(currentAngle*Mathf.Deg2Rad)*speedOfLaunch);
@@ -56,8 +56,10 @@ namespace Characters.Scripts.PhysicsCode
             timeLeftInBounce = bounceLength;
             inBounceMode = true; //Tells physics engine to pay attention to bounce mode.
             IsGravityEnabled = false;
-        }
 
+        }
+        
+        protected virtual void GroundedCheck(){}
         protected override void bouncePhysics(Vector2 move)
         {
             //Steps needed:
@@ -93,14 +95,19 @@ namespace Characters.Scripts.PhysicsCode
                 float colliderAngle;
                 
                 //Step 2: Get the angle from the vector
-                if (angleOfCollider.x == 0) //Check for dividing by zero
-                    colliderAngle = 90; //NOTE: this might be wrong, it could be negative 90
+                if (angleOfCollider.x == 0)
+                {
+                    //Check for dividing by zero
+                    colliderAngle = 90;
+                    //Debug.Log("hey wtf");
+                } //NOTE: this might be wrong, it could be negative 90
                 else
                     colliderAngle = (float)Math.Atan(angleOfCollider.y / angleOfCollider.x)*Mathf.Rad2Deg; //This is the angle of the ground
                 
                 //Step 3: calculate new angle to bounce
-
+                Debug.Log("collider angle: " +colliderAngle + "current angle: " + currentAngle);
                 currentAngle = 2 * colliderAngle - currentAngle;// this should be our bouncy angle 
+                Debug.Log(currentAngle);
                 
                 //Step 4: set up everything so that the player will move.
                 

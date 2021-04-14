@@ -1579,6 +1579,7 @@ MonoBehaviour:
   frictionValue: 7
   bounceLength: 0.3
   attackStrength: 28
+  playerTransform: {fileID: 2502741868877180492}
   currentAngle: 0
 --- !u!50 &646807545
 Rigidbody2D:
@@ -1608,6 +1609,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2112749837}
     m_Modifications:
+    - target: {fileID: 646807546, guid: 4e870472c27ac9946bbad4513068ab08, type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 2502741868877180492}
     - target: {fileID: 1585165975, guid: 4e870472c27ac9946bbad4513068ab08, type: 3}
       propertyPath: hpUiBox
       value: 
@@ -7688,6 +7693,7 @@ MonoBehaviour:
   frictionValue: 7
   bounceLength: 0.3
   attackStrength: 28
+  playerTransform: {fileID: 2502741868877180492}
   currentAngle: 0
 --- !u!50 &849315003
 Rigidbody2D:
@@ -8686,6 +8692,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2112749837}
     m_Modifications:
+    - target: {fileID: 646807546, guid: 4e870472c27ac9946bbad4513068ab08, type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 2502741868877180492}
     - target: {fileID: 1585165975, guid: 4e870472c27ac9946bbad4513068ab08, type: 3}
       propertyPath: hpUiBox
       value: 
@@ -9599,7 +9609,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1717065818}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 105.02, y: 2.3399997, z: -176.68506}
+  m_LocalPosition: {x: 69.12, y: 2.37, z: -176.68506}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

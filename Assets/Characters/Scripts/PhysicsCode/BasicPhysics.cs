@@ -50,7 +50,11 @@ namespace Characters.Scripts.PhysicsCode
         void FixedUpdate()
         {
             if (inBulletTime)
+            {
+                IsGrounded = false;
                 return;
+            }
+
             if (IsGravityEnabled)
                 velocity += Physics2D.gravity * (gravityModifier * Time.deltaTime); //serves as friction as well
 

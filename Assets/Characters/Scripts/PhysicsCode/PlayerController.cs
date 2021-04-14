@@ -104,13 +104,13 @@ namespace Characters.Scripts.PhysicsCode
             
             var angle= GetMouseAngle.MouseAngle(transform) +180;
             
-            var attackVelocity = new Vector2((float)(Math.Cos(angle*Mathf.Deg2Rad))*attackStrength, //*Mathf.Rad2Deg
+            var attackVelocity = new Vector2((float)(Math.Cos(angle*Mathf.Deg2Rad))*attackStrength, 
             (float)(Math.Sin(angle*Mathf.Deg2Rad))*attackStrength);
             
-            Debug.Log(angle);
+            //Debug.Log(angle);
             //Debug.Log(attackVelocity);
             //attackVelocity = Quaternion.AngleAxis(angle , Vector3.up) * attackVelocity;
-            Debug.Log(attackVelocity);
+            //Debug.Log(attackVelocity);
             
             velocity = attackVelocity;
             //exitedBulletTime = true;

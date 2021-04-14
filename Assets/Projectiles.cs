@@ -13,10 +13,18 @@ public class Projectiles : MonoBehaviour
     // Countdown for when the next bullet will be fired. When it reaches 0, the next bullet is fired
     // and it resets to startTimeBetweenShots.
     private float timeBetweenShots;
+    public bool isGrounded = false;
+
     public GameObject bulletPrefab;
+
+    private void Start()
+    {
+        timeBetweenShots = startTimeBetweenShots;
+    }
+
     void Update()
     {
-        if (timeBetweenShots <= 0)
+        if (timeBetweenShots <= 0 && isGrounded)
         {
             Shoot();
             timeBetweenShots = startTimeBetweenShots;

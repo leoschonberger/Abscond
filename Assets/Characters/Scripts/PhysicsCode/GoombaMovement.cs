@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace Characters.Scripts.PhysicsCode
 {
-	public class EnemyMovement : EnemyPhysics
+	public class GoombaMovement : EnemyPhysics
 	{
 		private float horizontalSpeed = 2f;
-		public Rigidbody2D rb;
+		//public Rigidbody2D rb;
 		bool facingLeft;
     	// Update is called once per frame
 		protected override void enemyMovement()

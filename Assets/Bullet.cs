@@ -14,16 +14,18 @@ public class Bullet : MonoBehaviour
     // the enemy's coordinates
     private Transform enemy;
     // Vector2 for the speed of the Bullet
-    private Vector2 speed;
+    private Vector2 angleTowardsPlayer;
+
+    //private float lifeLength = 10f;
     void Start()
     {
         // initializes the coordinates of the player and enemy
         player = GameObject.FindGameObjectWithTag("Player").transform;
         enemy = GetComponent<Transform>();
         // find the speed of the bullet based on the ratio between the coordinates of the player and enemy
-        speed = player.position - enemy.position;
-        speed.Normalize();
-        rb.velocity = speed * bulletSpeed;
+        angleTowardsPlayer = player.position - enemy.position;
+        angleTowardsPlayer.Normalize();
+        rb.velocity = angleTowardsPlayer * bulletSpeed;
     }
     
 

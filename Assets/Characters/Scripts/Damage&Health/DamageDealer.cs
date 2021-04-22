@@ -11,10 +11,13 @@ namespace Characters.Scripts
         // Checks to see if object is an enemy or player, then sends damage.
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Player"))
+            if (other.gameObject != null)
             {
-                other.GetComponent<Health>().TakeDamage(damage);
-                //Debug.Log("Damage given to: " + other.gameObject.name + "From :" + this.gameObject.name + " HP is now: " + other.GetComponent<Health>().currentHp);
+                if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Player"))
+                {
+                    other.GetComponent<Health>().TakeDamage(damage);
+                    //Debug.Log("Damage given to: " + other.gameObject.name + "From :" + this.gameObject.name + " HP is now: " + other.GetComponent<Health>().currentHp);
+                }
             }
         }
     }

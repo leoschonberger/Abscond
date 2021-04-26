@@ -153,6 +153,30 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 10, y: 10}
   m_EdgeRadius: 0
+--- !u!1 &551282004 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4641433675856877581, guid: 44b9e4755f60a6f4aa20fb8d05585704,
+    type: 3}
+  m_PrefabInstance: {fileID: 4641433675553730509}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &551282008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551282004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ae0dd69150b8b947b973faf53ab224f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 100
+  currentHp: 0
+  isDead: 0
+  hpUiBox: {fileID: 0}
+  updatedRespawnPoint: {x: 0, y: 0}
+  player: {fileID: 999020376}
 --- !u!1001 &742836294
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -235,6 +259,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e870472c27ac9946bbad4513068ab08, type: 3}
+--- !u!1 &999020376 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4641433676700028495, guid: 44b9e4755f60a6f4aa20fb8d05585704,
+    type: 3}
+  m_PrefabInstance: {fileID: 4641433675553730509}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1326940525
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -622,6 +652,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 4641433675856877582, guid: 44b9e4755f60a6f4aa20fb8d05585704,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4641433675856877583, guid: 44b9e4755f60a6f4aa20fb8d05585704,
         type: 3}
@@ -1065,7 +1100,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.16587782, y: 2.0142202}
+  m_Offset: {x: 0.010868907, y: 1.7165422}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1076,7 +1111,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.056871, y: 5.592409}
+  m_Size: {x: 5.0848064, y: 6.634282}
   m_EdgeRadius: 0
 --- !u!4 &8739150812395117234
 Transform:
@@ -1102,6 +1137,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8739150812395117234}
   - component: {fileID: 8739150812395117233}
+  - component: {fileID: 8739150812395117236}
   m_Layer: 10
   m_Name: Player Hurtbox
   m_TagString: Player
@@ -1109,6 +1145,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8739150812395117236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8739150812395117235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ae0dd69150b8b947b973faf53ab224f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 100
+  currentHp: 0
+  isDead: 0
+  hpUiBox: {fileID: 0}
+  updatedRespawnPoint: {x: 0, y: 0}
+  player: {fileID: 8749986840106706653}
 --- !u!61 &8739150812622643716
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1122,7 +1176,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.05747223, y: 1.9254081}
+  m_Offset: {x: 0.00886631, y: 1.9254081}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1133,7 +1187,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.0232277, y: 6.230205}
+  m_Size: {x: 5.1204395, y: 6.230205}
   m_EdgeRadius: 0
 --- !u!50 &8739150812622643717
 Rigidbody2D:

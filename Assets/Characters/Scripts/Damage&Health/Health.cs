@@ -31,7 +31,7 @@ namespace Characters.Scripts
        public void TakeDamage(int damageToTake)
         {
             currentHp -= damageToTake;
-            UpdatehpUiBox();
+            //UpdatehpUiBox();
         }
        
        //Healing: Adds hpToHeal to currentHp

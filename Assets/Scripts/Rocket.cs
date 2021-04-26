@@ -33,19 +33,25 @@ public class Rocket : MonoBehaviour
     {
         if (other.gameObject.layer == 11)
         {
-            var player = GameObject.FindGameObjectWithTag("Player").transform;
-            var currentAngle= GetMouseAngle.MouseAngle(player);
-            Debug.Log("mouse angle: "+currentAngle);
-            
-            GetComponent<Rigidbody2D>().velocity = new Vector2((float)Math.Cos(currentAngle*Mathf.Deg2Rad)*rocketSpeed, //*Mathf.Rad2Deg
-                (float)Math.Sin(currentAngle*Mathf.Deg2Rad)*rocketSpeed);
-            gameObject.GetComponent<Transform>().rotation = Quaternion.Euler(new Vector3(0, 0, currentAngle));
+            rb.velocity = Vector2.zero;
             //rb.velocity = attackVelocity;
         }
         else
         {
             Destroy(gameObject);
         }
+        //throw new NotImplementedException();
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        var player = GameObject.FindGameObjectWithTag("Player").transform;
+        var currentAngle= GetMouseAngle.MouseAngle(player);
+        Debug.Log("mouse angle: "+currentAngle);
+            
+        GetComponent<Rigidbody2D>().velocity = new Vector2((float)Math.Cos(currentAngle*Mathf.Deg2Rad)*rocketSpeed, //*Mathf.Rad2Deg
+            (float)Math.Sin(currentAngle*Mathf.Deg2Rad)*rocketSpeed);
+        gameObject.GetComponent<Transform>().rotation = Quaternion.Euler(new Vector3(0, 0, currentAngle));
         //throw new NotImplementedException();
     }
 

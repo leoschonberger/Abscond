@@ -62,7 +62,7 @@ public class Projectiles : MonoBehaviour
         }
         else
         {
-            timeBetweenShots -= Time.deltaTime;
+            timeBetweenShots -= Time.fixedDeltaTime;
         }
     }
 

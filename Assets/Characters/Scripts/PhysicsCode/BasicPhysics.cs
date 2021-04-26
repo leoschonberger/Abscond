@@ -34,7 +34,7 @@ namespace Characters.Scripts.PhysicsCode
         {
             ContactFilter.useTriggers= false;
             ContactFilter.SetLayerMask(Physics2D.GetLayerCollisionMask(gameObject.layer));
-        
+            Debug.Log(Time.timeScale);
             ContactFilter.useLayerMask = true;
         }
 
@@ -49,14 +49,17 @@ namespace Characters.Scripts.PhysicsCode
     
         void FixedUpdate()
         {
-            if (inBulletTime)
+            if (inBulletTime )
             {
                 IsGrounded = false;
                 return;
             }
 
+          
+
+
             if (IsGravityEnabled)
-                velocity += Physics2D.gravity * (gravityModifier * Time.deltaTime); //serves as friction as well
+                velocity += Physics2D.gravity * (gravityModifier * Time.fixedDeltaTime); //serves as friction as well
 
             SetHorizontalVelocity();
 
@@ -64,7 +67,7 @@ namespace Characters.Scripts.PhysicsCode
 
             IsGrounded = false;//assumes you are not grounded at the beginning
 
-            var deltaPosition = velocity * Time.deltaTime; //this is the change in position on the next update
+            var deltaPosition = velocity * Time.fixedDeltaTime; //this is the change in position on the next update
             
             var moveAlongGround = new Vector2(GroundNormal.y, -GroundNormal.x); //reversing the normal to tell character what direction they should move up slope
 
@@ -98,7 +101,7 @@ namespace Characters.Scripts.PhysicsCode
             
             //Debug.Log();
             
-            rb2d.position += move.normalized*distance; //actually moves the rigidbody
+            rb2d.position += move.normalized * (distance * Time.timeScale); //actually moves the rigidbody
         }
 
         protected virtual void SetHorizontalVelocity()

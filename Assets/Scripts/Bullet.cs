@@ -15,6 +15,7 @@ public class Bullet : MonoBehaviour
     private Transform enemy;
     // Vector2 for the speed of the Bullet
     private Vector2 angleTowardsPlayer;
+    
 
     //private float lifeLength = 10f;
     void Start()
@@ -27,6 +28,7 @@ public class Bullet : MonoBehaviour
         angleTowardsPlayer.Normalize();
         rb.velocity = angleTowardsPlayer * bulletSpeed;
     }
+
     
 
     private void OnTriggerEnter2D(Collider2D other)

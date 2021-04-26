@@ -91,6 +91,8 @@ namespace Characters.Scripts.PhysicsCode
         public override void EnterBulletTime()
         {
             base.EnterBulletTime();
+            Time.timeScale = 0.02f;
+            Time.fixedDeltaTime *= Time.timeScale;
             arm.SetActive(true);
         }
 
@@ -106,7 +108,11 @@ namespace Characters.Scripts.PhysicsCode
             
             var attackVelocity = new Vector2((float)(Math.Cos(angle*Mathf.Deg2Rad))*attackStrength, 
             (float)(Math.Sin(angle*Mathf.Deg2Rad))*attackStrength);
-            
+            Time.timeScale = 1;
+            Time.fixedDeltaTime = 0.02f;
+            //Debug.Log("fixed: " +Time.fixedDeltaTime + "and unfixed: " +Time.deltaTime);
+
+            //Time.fixedDeltaTime ;
             //Debug.Log(angle);
             //Debug.Log(attackVelocity);
             //attackVelocity = Quaternion.AngleAxis(angle , Vector3.up) * attackVelocity;

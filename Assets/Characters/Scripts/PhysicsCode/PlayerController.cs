@@ -9,6 +9,8 @@ namespace Characters.Scripts.PhysicsCode
     public class PlayerController : BasicPhysics
     {
         public GameObject arm;
+        public GameObject attackLengthObject;
+        public TextMesh timeLeftInAttackText;
         
         public float maxSpeed = 7;
         public float jumpTakeOffSpeed = 7;
@@ -16,21 +18,30 @@ namespace Characters.Scripts.PhysicsCode
         [Range(0.1f,0.5f)] public float timeOfDash = 0.1f; 
         [Range(14,56)] public float speedOfDash = 14f;
         [Range(14, 56)] public float attackStrength = 14f;
-        
+        [Range(1, 3)] public float lengthOfAttack = 3f;
+
+        private float _timeLeftInAttack;
         private float _timeLeftInDash;
         private Vector2 _dashDirection = Vector2.zero;
         private bool _canWeDashAgain = true;
 
-        private bool exitedBulletTime = false;
+        //private bool exitedBulletTime = false;
         protected override void ComputeVelocity()
         {
             if (inBulletTime)
+            {
+                //Debug.Log(_timeLeftInAttack);
+                _timeLeftInAttack -= Time.fixedDeltaTime/10;
+                //Debug.Log(Time.fixedDeltaTime);
+                timeLeftInAttackText.text = (_timeLeftInAttack/Time.timeScale).ToString();
                 return;
-            if (exitedBulletTime)
+            }
+
+            /*if (exitedBulletTime)
             {
                 exitedBulletTime = false;
                 return;
-            }
+            }*/
             var move = Vector2.zero;
             move.x = Input.GetAxis("Horizontal");
             move.y = Input.GetAxis("Vertical");
@@ -72,9 +83,9 @@ namespace Characters.Scripts.PhysicsCode
                     velocity.x = 0f;
                 }
                 return;
-        }
+            }
 
-        TargetVelocity = move * maxSpeed;
+            TargetVelocity = move * maxSpeed;
         
         }
 
@@ -94,12 +105,15 @@ namespace Characters.Scripts.PhysicsCode
             Time.timeScale = 0.02f;
             Time.fixedDeltaTime *= Time.timeScale;
             arm.SetActive(true);
+            attackLengthObject.SetActive(true);
+            _timeLeftInAttack = lengthOfAttack * Time.timeScale;
         }
 
         public override void ExitBulletTime()
         {
             base.ExitBulletTime();
             arm.SetActive(false);
+            attackLengthObject.SetActive(false);
             _timeLeftInDash = 0; //Resets our dash!
             velocity = Vector2.zero;
             TargetVelocity = Vector2.zero; //we make sure to cancel our velocity here

@@ -47,7 +47,7 @@ namespace Characters.Scripts.PhysicsCode
             velocity = Vector2.zero;
             TargetVelocity = Vector2.zero;
             currentAngle= GetMouseAngle.MouseAngle(playerTransform);
-            Debug.Log("mouse angle: "+currentAngle);
+            //Debug.Log("mouse angle: "+currentAngle);
             
             var attackVelocity = new Vector2((float)Math.Cos(currentAngle*Mathf.Deg2Rad)*speedOfLaunch, //*Mathf.Rad2Deg
                 (float)Math.Sin(currentAngle*Mathf.Deg2Rad)*speedOfLaunch);
@@ -107,7 +107,7 @@ namespace Characters.Scripts.PhysicsCode
                 //Step 3: calculate new angle to bounce
                 Debug.Log("collider angle: " +colliderAngle + "current angle: " + currentAngle);
                 currentAngle = 2 * colliderAngle - currentAngle;// this should be our bouncy angle 
-                Debug.Log(currentAngle);
+                //Debug.Log(currentAngle);
                 
                 //Step 4: set up everything so that the player will move.
                 

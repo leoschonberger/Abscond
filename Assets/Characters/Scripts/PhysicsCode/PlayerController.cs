@@ -9,8 +9,8 @@ namespace Characters.Scripts.PhysicsCode
     public class PlayerController : BasicPhysics
     {
         public GameObject arm;
-        public GameObject attackLengthObject;
-        public TextMesh timeLeftInAttackText;
+        //public GameObject attackLengthObject;
+        //public TextMesh timeLeftInAttackText;
         
         public float maxSpeed = 7;
         public float jumpTakeOffSpeed = 7;
@@ -31,9 +31,9 @@ namespace Characters.Scripts.PhysicsCode
             if (inBulletTime)
             {
                 //Debug.Log(_timeLeftInAttack);
-                _timeLeftInAttack -= Time.fixedDeltaTime/10;
+                _timeLeftInAttack -= Time.deltaTime;
                 //Debug.Log(Time.fixedDeltaTime);
-                timeLeftInAttackText.text = (_timeLeftInAttack/Time.timeScale).ToString();
+                //timeLeftInAttackText.text = (_timeLeftInAttack/Time.timeScale).ToString();
                 return;
             }
 
@@ -105,7 +105,7 @@ namespace Characters.Scripts.PhysicsCode
             Time.timeScale = 0.02f;
             Time.fixedDeltaTime *= Time.timeScale;
             arm.SetActive(true);
-            attackLengthObject.SetActive(true);
+            //attackLengthObject.SetActive(true);
             _timeLeftInAttack = lengthOfAttack * Time.timeScale;
         }
 
@@ -113,12 +113,13 @@ namespace Characters.Scripts.PhysicsCode
         {
             base.ExitBulletTime();
             arm.SetActive(false);
-            attackLengthObject.SetActive(false);
+            //attackLengthObject.SetActive(false);
             _timeLeftInDash = 0; //Resets our dash!
             velocity = Vector2.zero;
             TargetVelocity = Vector2.zero; //we make sure to cancel our velocity here
             
             var angle= GetMouseAngle.MouseAngle(transform) +180;
+            Debug.Log(angle);
             
             var attackVelocity = new Vector2((float)(Math.Cos(angle*Mathf.Deg2Rad))*attackStrength, 
             (float)(Math.Sin(angle*Mathf.Deg2Rad))*attackStrength);
@@ -131,7 +132,7 @@ namespace Characters.Scripts.PhysicsCode
             //Debug.Log(attackVelocity);
             //attackVelocity = Quaternion.AngleAxis(angle , Vector3.up) * attackVelocity;
             //Debug.Log(attackVelocity);
-            
+            Debug.Log(attackVelocity);
             velocity = attackVelocity;
             //exitedBulletTime = true;
         }
@@ -139,9 +140,22 @@ namespace Characters.Scripts.PhysicsCode
         protected override void SetHorizontalVelocity() 
         
         {
-            
-            
-            
+
+            if (Time.timeScale != 1) //Everything breaks if I don't do this, trust me
+            {
+                return;
+            }
+
+            /*if (!IsGrounded)
+            {
+                Debug.Log(velocity);
+                Debug.Log(TargetVelocity);
+            }*/
+
+            if (!IsGrounded && TargetVelocity == Vector2.zero)//shouldn't need this, but apparently I do
+            {
+                return;
+            }
             if (IsGrounded && math.abs(velocity.x)<=maxSpeed || !IsGravityEnabled)
             {
                 
@@ -185,7 +199,7 @@ namespace Characters.Scripts.PhysicsCode
                 return;
             }
             
-            if (velocity.x<0 && TargetVelocity.x>0) //If we are headed backwards and but want to move forwards
+            /*if (velocity.x<0 && TargetVelocity.x>0) //If we are headed backwards and but want to move forwards
             {
                 if (velocity.x<-maxSpeed) //If our velocity is greater in magnitude than the max speed allowed
                     velocity.x += TargetVelocity.x/4;
@@ -194,7 +208,7 @@ namespace Characters.Scripts.PhysicsCode
             {
                 if (velocity.x>maxSpeed)
                     velocity.x += TargetVelocity.x / 4;
-            }
+            }*/
 
             
         }

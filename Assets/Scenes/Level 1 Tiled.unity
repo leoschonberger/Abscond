@@ -1553,7 +1553,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 622264568}
-  m_Text: '14 HP
+  m_Text: 'X HP
 
 '
   m_OffsetZ: 0

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -12,7 +13,7 @@ namespace Characters.Scripts
         public bool isDead = false;
         public Vector2 updatedRespawnPoint;
         public GameObject player;
-        public TextMesh tmesh;
+        public TextMeshPro tmesh;
 
 
         // Start is called before the first frame update
@@ -32,7 +33,7 @@ namespace Characters.Scripts
        public void TakeDamage(int damageToTake)
         {
             currentHp -= damageToTake;
-            //UpdatehpUiBox();
+            UpdateHpCounter();
         }
        
        //Healing: Adds hpToHeal to currentHp

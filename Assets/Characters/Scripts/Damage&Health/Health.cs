@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -9,9 +10,9 @@ namespace Characters.Scripts
         public int maxHp;
         public int currentHp;
         public bool isDead = false;
-        public Text hpUiBox;
         public Vector2 updatedRespawnPoint;
         public GameObject player;
+        public TextMesh tmesh;
 
 
         // Start is called before the first frame update
@@ -19,7 +20,7 @@ namespace Characters.Scripts
         void Start()
         {
             currentHp = maxHp;
-            UpdatehpUiBox();
+            UpdateHpCounter();
         }
 
         // Update is called once per frame
@@ -38,14 +39,14 @@ namespace Characters.Scripts
        public void Heal(int hpToHeal)
         {
             currentHp += hpToHeal;
-            UpdatehpUiBox();
+            UpdateHpCounter();
         }
        private void CheckDeath()
         {
             if (currentHp < 1)
             {
                 isDead = true;
-                Debug.Log(gameObject.name + "Has died");
+                //Debug.Log(gameObject.name + "Has died");
                 if (player.tag == "Player")
                 {
                     //TODO: Make PLayer Death Animation
@@ -61,10 +62,10 @@ namespace Characters.Scripts
         }
        
        //Updates UI Text box with string
-       private void UpdatehpUiBox()
+       private void UpdateHpCounter()
         {
-            String hpText = gameObject.name + " HP: " + currentHp;
-            hpUiBox.text = hpText;
+            String hpText =" HP: " + currentHp;
+            tmesh.text = hpText;
         }
 
        //Heals Player to maxHp, sets location to last respawn point, and resets isDead.
@@ -72,7 +73,6 @@ namespace Characters.Scripts
        {
            Debug.Log("Respawning Player");
            Heal(maxHp);
-           Debug.Log("Player has regained health");
            player.transform.position = updatedRespawnPoint;
            isDead = false;
 

@@ -18,9 +18,8 @@ namespace Characters.Scripts.PhysicsCode
         [Range(0.1f,0.5f)] public float timeOfDash = 0.1f; 
         [Range(14,56)] public float speedOfDash = 14f;
         [Range(14, 56)] public float attackStrength = 14f;
-        [Range(1, 3)] public float lengthOfAttack = 3f;
-
-        private float _timeLeftInAttack;
+        
+        
         private float _timeLeftInDash;
         private Vector2 _dashDirection = Vector2.zero;
         private bool _canWeDashAgain = true;
@@ -30,10 +29,6 @@ namespace Characters.Scripts.PhysicsCode
         {
             if (inBulletTime)
             {
-                //Debug.Log(_timeLeftInAttack);
-                _timeLeftInAttack -= Time.deltaTime;
-                //Debug.Log(Time.fixedDeltaTime);
-                //timeLeftInAttackText.text = (_timeLeftInAttack/Time.timeScale).ToString();
                 return;
             }
 
@@ -86,6 +81,7 @@ namespace Characters.Scripts.PhysicsCode
             }
 
             TargetVelocity = move * maxSpeed;
+           // Debug.Log("move "+ move);
         
         }
 
@@ -106,7 +102,6 @@ namespace Characters.Scripts.PhysicsCode
             Time.fixedDeltaTime *= Time.timeScale;
             arm.SetActive(true);
             //attackLengthObject.SetActive(true);
-            _timeLeftInAttack = lengthOfAttack * Time.timeScale;
         }
 
         public override void ExitBulletTime()
@@ -119,7 +114,7 @@ namespace Characters.Scripts.PhysicsCode
             TargetVelocity = Vector2.zero; //we make sure to cancel our velocity here
             
             var angle= GetMouseAngle.MouseAngle(transform) +180;
-            Debug.Log(angle);
+            //Debug.Log(angle);
             
             var attackVelocity = new Vector2((float)(Math.Cos(angle*Mathf.Deg2Rad))*attackStrength, 
             (float)(Math.Sin(angle*Mathf.Deg2Rad))*attackStrength);
@@ -132,20 +127,18 @@ namespace Characters.Scripts.PhysicsCode
             //Debug.Log(attackVelocity);
             //attackVelocity = Quaternion.AngleAxis(angle , Vector3.up) * attackVelocity;
             //Debug.Log(attackVelocity);
-            Debug.Log(attackVelocity);
+            //Debug.Log(attackVelocity);
             velocity = attackVelocity;
+            //Debug.Log(Input.GetAxis("Horizontal"));
+            Input.ResetInputAxes(); //We need this because unity is dumb and tries to pretend that wasd is analog instead of digital and messes everything up.
+            //Debug.Log("second try" + Input.GetAxis("Horizontal"));
             //exitedBulletTime = true;
         }
 
         protected override void SetHorizontalVelocity() 
         
         {
-
-            if (Time.timeScale != 1) //Everything breaks if I don't do this, trust me
-            {
-                return;
-            }
-
+            
             /*if (!IsGrounded)
             {
                 Debug.Log(velocity);
@@ -163,7 +156,6 @@ namespace Characters.Scripts.PhysicsCode
                 return;
             }
 
-
             if (IsGrounded&& TargetVelocity.x==0f)
             {
                 if (velocity.x<0)
@@ -180,9 +172,7 @@ namespace Characters.Scripts.PhysicsCode
                 
                 //add check if we went past zero
             }
-            
-            
-            
+
             //This could use some cleaning up.
             if (math.abs(velocity.x)<=maxSpeed)
             {
@@ -199,18 +189,19 @@ namespace Characters.Scripts.PhysicsCode
                 return;
             }
             
-            /*if (velocity.x<0 && TargetVelocity.x>0) //If we are headed backwards and but want to move forwards
+            if (velocity.x<0 && TargetVelocity.x>0) //If we are headed backwards and but want to move forwards
             {
                 if (velocity.x<-maxSpeed) //If our velocity is greater in magnitude than the max speed allowed
                     velocity.x += TargetVelocity.x/4;
+                //Debug.Log("whyy, target velocity: " +TargetVelocity);
             }
             else if (velocity.x>0 && TargetVelocity.x<0)
             {
                 if (velocity.x>maxSpeed)
                     velocity.x += TargetVelocity.x / 4;
-            }*/
+                //Debug.Log("whyy, target velocity: " +TargetVelocity);
+            }
 
-            
         }
     }
 }

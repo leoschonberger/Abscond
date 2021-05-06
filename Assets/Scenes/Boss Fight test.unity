@@ -196,6 +196,32 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 619337041696262298, guid: 4e870472c27ac9946bbad4513068ab08,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+    - target: {fileID: 969073414517578343, guid: 4e870472c27ac9946bbad4513068ab08,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 969073414517578343, guid: 4e870472c27ac9946bbad4513068ab08,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4,
+        type: 2}
+    - target: {fileID: 969073414517578343, guid: 4e870472c27ac9946bbad4513068ab08,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 969073414517578343, guid: 4e870472c27ac9946bbad4513068ab08,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
     - target: {fileID: 1394162098383796178, guid: 4e870472c27ac9946bbad4513068ab08,
         type: 3}
       propertyPath: m_RootOrder
@@ -285,7 +311,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'HP: 100'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 0}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -734,7 +760,7 @@ PrefabInstance:
     - target: {fileID: 1798970977004859603, guid: 472a2d9e5d0748e43ab2697f71850115,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1798970977004859603, guid: 472a2d9e5d0748e43ab2697f71850115,
         type: 3}
@@ -1046,7 +1072,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 999020378}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2114522464
 GameObject:
@@ -1203,6 +1229,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3880431361089094426, guid: 44b9e4755f60a6f4aa20fb8d05585704,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4641433675856877581, guid: 44b9e4755f60a6f4aa20fb8d05585704,
         type: 3}
       propertyPath: m_Layer
@@ -1568,7 +1599,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.89, y: 2.89}
+    oldSize: {x: 6.88, y: 2.83}
     newSize: {x: 4.89, y: 2.89}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1630,7 +1661,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.89, y: 2.89}
+    oldSize: {x: 6.88, y: 2.83}
     newSize: {x: 4.89, y: 2.89}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

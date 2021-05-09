@@ -9,7 +9,8 @@ namespace Characters.Scripts.PhysicsCode
         public float minGroundNormalY = 0.65f;
         public float gravityModifier = 1f;
 
-        protected bool IsGrounded;
+        
+        public bool IsGrounded;
         protected Vector2 GroundNormal = Vector2.up;
 
         protected Vector2 TargetVelocity;
@@ -45,6 +46,7 @@ namespace Characters.Scripts.PhysicsCode
             TargetVelocity = Vector2.zero;
             //Debug.Log("hey");
             ComputeVelocity();
+            
         }
     
         void FixedUpdate()

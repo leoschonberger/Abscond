@@ -24,7 +24,13 @@ namespace Characters.Scripts.PhysicsCode
         private Vector2 _dashDirection = Vector2.zero;
         private bool _canWeDashAgain = true;
 
+<<<<<<< Updated upstream
         //private bool exitedBulletTime = false;
+=======
+        private Animator PlayerAnimations;
+        
+        private bool exitedBulletTime = false;
+>>>>>>> Stashed changes
         protected override void ComputeVelocity()
         {
             if (inBulletTime)
@@ -84,7 +90,6 @@ namespace Characters.Scripts.PhysicsCode
            // Debug.Log("move "+ move);
         
         }
-
         private void DashMove()
         {
 

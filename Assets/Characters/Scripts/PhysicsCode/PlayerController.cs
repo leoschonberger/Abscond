@@ -24,13 +24,10 @@ namespace Characters.Scripts.PhysicsCode
         private Vector2 _dashDirection = Vector2.zero;
         private bool _canWeDashAgain = true;
 
-<<<<<<< Updated upstream
         //private bool exitedBulletTime = false;
-=======
-        private Animator PlayerAnimations;
+        //private Animator PlayerAnimations;
         
-        private bool exitedBulletTime = false;
->>>>>>> Stashed changes
+        //private bool exitedBulletTime = false;
         protected override void ComputeVelocity()
         {
             if (inBulletTime)

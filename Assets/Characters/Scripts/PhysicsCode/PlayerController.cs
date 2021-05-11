@@ -25,6 +25,9 @@ namespace Characters.Scripts.PhysicsCode
         private bool _canWeDashAgain = true;
 
         //private bool exitedBulletTime = false;
+        //private Animator PlayerAnimations;
+        
+        //private bool exitedBulletTime = false;
         protected override void ComputeVelocity()
         {
             if (inBulletTime)
@@ -84,7 +87,6 @@ namespace Characters.Scripts.PhysicsCode
            // Debug.Log("move "+ move);
         
         }
-
         private void DashMove()
         {
 

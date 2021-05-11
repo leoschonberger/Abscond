@@ -19,7 +19,7 @@ public class Projectiles : MonoBehaviour
     // the enemy's coordinates
     private Transform enemy;
     public GameObject bulletPrefab;
-    private Vector2 angleTowardsPlayer;
+    public Vector2 angleTowardsPlayer;
     public float visibilityDistance;
     private void Start()
     {

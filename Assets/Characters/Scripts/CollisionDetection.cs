@@ -9,6 +9,8 @@ namespace Characters.Scripts
 
         public Rigidbody2D MainRigidbody2D;
         public Transform MainTransform;
+        
+        private Vector2 previousVelocity;
         protected virtual void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.gameObject.layer == 14)
@@ -20,11 +22,15 @@ namespace Characters.Scripts
                 //Debug.Log("huh");
                 //var velocity = enemyPhysics.velocity;
                 //Debug.Log("saved velocity "+velocity);
+                //previousVelocity = enemyPhysics.velocity;
+                //enemyPhysics.velocity = previousVelocity;
+                //MainRigidbody2D.Sleep();
                 MainRigidbody2D.position = collision.gameObject.GetComponent<Teleporter>().teleportDestination.position;
-                //enemyPhysics.velocity = velocity;
+                
 
                 //Debug.Log("new velocity" + velocity);
                 //Debug.Log(enemyPhysics.velocity);
+                return;
             }
 
             enemyPhysics.EnterBulletTime();
@@ -39,6 +45,13 @@ namespace Characters.Scripts
                 return;
             }
 
+            if (other.gameObject.layer == 20)
+            {
+                //MainRigidbody2D.WakeUp();
+                //enemyPhysics.velocity = previousVelocity;
+                //Debug.Log(enemyPhysics.velocity);
+                return;
+            }
             
             enemyPhysics.ExitBulletTime();
             //Debug.Log("this actually works");

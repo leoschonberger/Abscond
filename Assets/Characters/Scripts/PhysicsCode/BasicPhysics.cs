@@ -56,16 +56,27 @@ namespace Characters.Scripts.PhysicsCode
                 IsGrounded = false;
                 return;
             }
-
-            if (IsGravityEnabled)
-                velocity += Physics2D.gravity * (gravityModifier * Time.fixedDeltaTime); //serves as friction as well
-
             if (inBounceMode) //do bounce physics when you are in bounce mode
             {
-                Debug.Log("current velocity "+ velocity);
+                //Debug.Log("bounce mode "+ velocity);
+                //var previousVelocity = velocity;
                 bouncePhysics(velocity * Time.fixedDeltaTime);
+                
                 return;
             }
+
+            if (IsGravityEnabled)
+            {
+                //Debug.Log("current velocity "+ velocity);
+                var preivousVelocity = velocity;
+                velocity += Physics2D.gravity * (gravityModifier * Time.fixedDeltaTime); //serves as friction as well
+                if (preivousVelocity.y > 0 && velocity.y <0 )
+                {
+                    Debug.Log("what");
+                }
+            }
+
+            
             
             SetHorizontalVelocity();
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -81,7 +82,10 @@ namespace Characters.Scripts.PhysicsCode
                     //Unity is super nice, and gives us the desired normal no matter what.
                     
             //Step 1: check for if you are hitting a collider
-
+            
+            Debug.Log(move);
+            Debug.Log("fixedDeltaTime: " +Time.fixedDeltaTime);
+            Debug.Log("velocity "+ velocity);
             var distance = move.magnitude;
             //Debug.Log(move);
             var count= rb2dThatWeCast.Cast(move, ContactFilter, HitBuffer, distance + ShellRadius); //Counts the colliders we will contact within the next frame
@@ -90,11 +94,7 @@ namespace Characters.Scripts.PhysicsCode
                 HitBufferList.Add(HitBuffer[i]);
             for (int i = 0; i < count; i++)
             {
-                if (HitBufferList[i].collider.gameObject.layer == 20) //If it hits a teleporter, don't bounce
-                {
-                    Debug.Log("hello");
-                    return;
-                }
+                Debug.Log(HitBufferList[i].collider.gameObject.name);
                 var currentNormal = HitBufferList[i].normal;
                 var angleOfCollider = new Vector2(currentNormal.y, -currentNormal.x); //This is the correct vector now
 

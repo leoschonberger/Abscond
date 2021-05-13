@@ -35,7 +35,7 @@ namespace Characters.Scripts.PhysicsCode
         {
             ContactFilter.useTriggers= false;
             ContactFilter.SetLayerMask(Physics2D.GetLayerCollisionMask(gameObject.layer));
-            Debug.Log(Time.timeScale);
+            //Debug.Log(Time.timeScale);
             ContactFilter.useLayerMask = true;
         }
 
@@ -51,20 +51,18 @@ namespace Characters.Scripts.PhysicsCode
     
         void FixedUpdate()
         {
-            if (inBulletTime )
+            if (inBulletTime)
             {
                 IsGrounded = false;
                 return;
             }
-
-          
-
 
             if (IsGravityEnabled)
                 velocity += Physics2D.gravity * (gravityModifier * Time.fixedDeltaTime); //serves as friction as well
 
             if (inBounceMode) //do bounce physics when you are in bounce mode
             {
+                Debug.Log("current velocity "+ velocity);
                 bouncePhysics(velocity * Time.fixedDeltaTime);
                 return;
             }
@@ -72,8 +70,6 @@ namespace Characters.Scripts.PhysicsCode
             SetHorizontalVelocity();
 
             //Debug.Log(velocity);
-            
-            
 
             IsGrounded = false;//assumes you are not grounded at the beginning
 
@@ -83,7 +79,6 @@ namespace Characters.Scripts.PhysicsCode
 
             var move = moveAlongGround * deltaPosition.x; //this is how far we want to move along x
 
-            
             Movement(move, false); //moves along x
         
             move = Vector2.up * deltaPosition.y;

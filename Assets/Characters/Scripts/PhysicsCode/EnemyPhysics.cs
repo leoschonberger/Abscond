@@ -83,6 +83,7 @@ namespace Characters.Scripts.PhysicsCode
             //Step 1: check for if you are hitting a collider
 
             var distance = move.magnitude;
+            Debug.Log(move);
             var count= rb2dThatWeCast.Cast(move, ContactFilter, HitBuffer, distance + ShellRadius); //Counts the colliders we will contact within the next frame
             HitBufferList.Clear();
             for (int i = 0; i < count; i++)

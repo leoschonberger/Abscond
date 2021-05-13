@@ -41,7 +41,7 @@ namespace Characters.Scripts
                 double roundedTimeLeftInAttack = 0;
                 if (_timeLeftInAttack >= 0)
                 {
-                    Debug.Log("hello");
+                    //Debug.Log("hello");
                     attackText.gameObject.SetActive(true);
                     _timeLeftInAttack -= 0.02f;
                     roundedTimeLeftInAttack = Math.Round(_timeLeftInAttack,2);

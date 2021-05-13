@@ -114,27 +114,19 @@ namespace Characters.Scripts.PhysicsCode
             _timeLeftInDash = 0; //Resets our dash!
             velocity = Vector2.zero;
             TargetVelocity = Vector2.zero; //we make sure to cancel our velocity here
-            
-            var angle= GetMouseAngle.MouseAngle(transform) +180;
+
+            var angle = GetMouseAngle.MouseAngle(transform) + 180;
             //Debug.Log(angle);
-            
-            var attackVelocity = new Vector2((float)(Math.Cos(angle*Mathf.Deg2Rad))*attackStrength, 
-            (float)(Math.Sin(angle*Mathf.Deg2Rad))*attackStrength);
+
+            var attackVelocity = new Vector2((float) (Math.Cos(angle * Mathf.Deg2Rad)) * attackStrength,
+                (float) (Math.Sin(angle * Mathf.Deg2Rad)) * attackStrength);
             Time.timeScale = 1;
             Time.fixedDeltaTime = 0.02f;
-            //Debug.Log("fixed: " +Time.fixedDeltaTime + "and unfixed: " +Time.deltaTime);
 
-            //Time.fixedDeltaTime ;
-            //Debug.Log(angle);
-            //Debug.Log(attackVelocity);
-            //attackVelocity = Quaternion.AngleAxis(angle , Vector3.up) * attackVelocity;
-            //Debug.Log(attackVelocity);
-            //Debug.Log(attackVelocity);
             velocity = attackVelocity;
-            //Debug.Log(Input.GetAxis("Horizontal"));
-            Input.ResetInputAxes(); //We need this because unity is dumb and tries to pretend that wasd is analog instead of digital and messes everything up.
-            //Debug.Log("second try" + Input.GetAxis("Horizontal"));
-            //exitedBulletTime = true;
+
+            if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
+                Input.ResetInputAxes(); //We need this because unity is dumb and tries to pretend that wasd is analog instead of digital and messes everything up.
         }
 
         protected override void SetHorizontalVelocity() 

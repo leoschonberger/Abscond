@@ -63,9 +63,17 @@ namespace Characters.Scripts.PhysicsCode
             if (IsGravityEnabled)
                 velocity += Physics2D.gravity * (gravityModifier * Time.fixedDeltaTime); //serves as friction as well
 
+            if (inBounceMode) //do bounce physics when you are in bounce mode
+            {
+                bouncePhysics(velocity * Time.fixedDeltaTime);
+                return;
+            }
+            
             SetHorizontalVelocity();
 
             //Debug.Log(velocity);
+            
+            
 
             IsGrounded = false;//assumes you are not grounded at the beginning
 
@@ -75,12 +83,7 @@ namespace Characters.Scripts.PhysicsCode
 
             var move = moveAlongGround * deltaPosition.x; //this is how far we want to move along x
 
-            if (inBounceMode) //do bounce physics when you are in bounce mode
-            {
-                bouncePhysics(move);
-                return;
-            }
-        
+            
             Movement(move, false); //moves along x
         
             move = Vector2.up * deltaPosition.y;

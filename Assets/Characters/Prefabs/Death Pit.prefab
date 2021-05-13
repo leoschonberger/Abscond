@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 339490138789019765}
   - component: {fileID: 339490138789019764}
-  - component: {fileID: 339490138789019767}
   - component: {fileID: 339490138789019770}
   m_Layer: 12
   m_Name: Death Pit
@@ -50,7 +49,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.89, y: 2.89}
+    oldSize: {x: 6.88, y: 2.83}
     newSize: {x: 4.89, y: 2.89}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -59,18 +58,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.834423, y: 2.956604}
   m_EdgeRadius: 0
---- !u!114 &339490138789019767
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 339490138789019766}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a66316f7ebcf6c489f4a54a0b7034d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &339490138789019770
 SpriteRenderer:
   m_ObjectHideFlags: 0

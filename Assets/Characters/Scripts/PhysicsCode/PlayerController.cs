@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -25,9 +25,9 @@ namespace Characters.Scripts.PhysicsCode
         private bool _canWeDashAgain = true;
 
         //private bool exitedBulletTime = false;
-        //private Animator PlayerAnimations;
+        private Animator PlayerAnimations;
         
-        //private bool exitedBulletTime = false;
+        private bool exitedBulletTime = false;
         protected override void ComputeVelocity()
         {
             if (inBulletTime)

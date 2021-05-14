@@ -76,3 +76,5 @@ crashlytics-build.properties
 
 
 *.xml
+
+Assets/Characters/Scripts/Folder.DotSettings.user.meta

@@ -1,4 +1,5 @@
-﻿using Characters.Scripts.PhysicsCode;
+﻿using System.Collections;
+using Characters.Scripts.PhysicsCode;
 using UnityEngine;
 
 namespace Characters.Scripts
@@ -19,17 +20,14 @@ namespace Characters.Scripts
             }
             if (collision.gameObject.layer == 20) //teleporter
             {
-                //Debug.Log("huh");
-                //var velocity = enemyPhysics.velocity;
-                //Debug.Log("saved velocity "+velocity);
-                //previousVelocity = enemyPhysics.velocity;
-                //enemyPhysics.velocity = previousVelocity;
-                //MainRigidbody2D.Sleep();
-                MainRigidbody2D.position = collision.gameObject.GetComponent<Teleporter>().teleportDestination.position;
                 
-
-                //Debug.Log("new velocity" + velocity);
-                //Debug.Log(enemyPhysics.velocity);
+                GameObject teleporter; //more efficient this way
+                var teleporterScript = (teleporter = collision.gameObject).GetComponent<Teleporter>();
+                
+                MainRigidbody2D.position = teleporterScript.teleportDestination.position;
+                var cooldown = TeleporterCooldown(teleporterScript.cooldownLength, teleporter, teleporterScript.secondTeleporter);
+                StartCoroutine(cooldown); //Makes it so that the enemy wont fall on to one of the teleporters and get stuck in an infinite loop
+                
                 return;
             }
 
@@ -57,7 +55,14 @@ namespace Characters.Scripts
             //Debug.Log("this actually works");
             //throw new NotImplementedException();
         }
-        
-        
+
+        private IEnumerator TeleporterCooldown(float cooldownTime, GameObject teleporter1, GameObject teleporter2)
+        {
+            teleporter1.SetActive(false);
+            teleporter2.SetActive(false);
+            yield return new WaitForSeconds(cooldownTime);
+            teleporter1.SetActive(true);
+            teleporter2.SetActive(true);
+        }
     }
 }

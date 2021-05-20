@@ -94,6 +94,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minGroundNormalY: 0.65
   gravityModifier: 1
+  respawnLocation: {x: 0, y: 0, z: 0}
   IsGrounded: 0
   velocity: {x: 0, y: 0}
   rb2d: {fileID: 1143396182304851076}
@@ -117,7 +118,7 @@ GameObject:
   - component: {fileID: 1143396183126011956}
   m_Layer: 10
   m_Name: Enemy Hurtbox
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -175,6 +176,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPhysics: {fileID: 1143396182428929407}
+  MainRigidbody2D: {fileID: 0}
+  MainTransform: {fileID: 0}
+  respawnLocation: {x: 0, y: 0, z: 0}
 --- !u!1 &4932859686321004795
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,7 +192,7 @@ GameObject:
   - component: {fileID: 1143396182304851076}
   m_Layer: 9
   m_Name: punching bag
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Projectiles : MonoBehaviour
 {
+    public bool IsAttacking;
     // Transform for where the bullets are released from the enemy
     public Transform firePoint;
     // Time in seconds between when each bullet is fired
@@ -29,7 +30,7 @@ public class Projectiles : MonoBehaviour
         enemy = GetComponent<Transform>();
     }
 
-    bool canSeePlayer(float distance)
+   public bool canSeePlayer(float distance)
     {
         angleTowardsPlayer = player.position - enemy.position;
         angleTowardsPlayer.Normalize();
@@ -56,12 +57,14 @@ public class Projectiles : MonoBehaviour
         {
             if (canSeePlayer(visibilityDistance))
             {
+                IsAttacking = true;
                 Shoot();
                 timeBetweenShots = startTimeBetweenShots;
             }
         }
         else
         {
+            IsAttacking = false;
             timeBetweenShots -= Time.fixedDeltaTime;
         }
     }

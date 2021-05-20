@@ -262,6 +262,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minGroundNormalY: 0.65
   gravityModifier: 1
+  IsGrounded: 0
   velocity: {x: 0, y: 0}
   rb2d: {fileID: 178115074}
   rb2dThatWeCast: {fileID: 125429142}
@@ -392,9 +393,9 @@ MonoBehaviour:
   maxHp: 100
   currentHp: 0
   isDead: 0
-  hpUiBox: {fileID: 713281802}
   updatedRespawnPoint: {x: 0, y: 0}
   player: {fileID: 1415194549}
+  tmesh: {fileID: 0}
 --- !u!61 &127375300
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -469,9 +470,9 @@ MonoBehaviour:
   maxHp: 100
   currentHp: 0
   isDead: 0
-  hpUiBox: {fileID: 1831923844}
   updatedRespawnPoint: {x: 0, y: 0}
   player: {fileID: 178115072}
+  tmesh: {fileID: 0}
 --- !u!114 &138911158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -485,6 +486,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPhysics: {fileID: 125429141}
+  MainRigidbody2D: {fileID: 0}
+  MainTransform: {fileID: 0}
 --- !u!61 &138911159
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1635,11 +1638,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d65f52ecb1b335f42877b09bd025c88c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsAttacking: 0
   firePoint: {fileID: 619341217}
   startTimeBetweenShots: 2
   isGrounded: 0
   bulletPrefab: {fileID: 991741043290225610, guid: d4c74d22a10b2134490bd3eaf9efa285,
     type: 3}
+  angleTowardsPlayer: {x: 0, y: 0}
   visibilityDistance: 0
 --- !u!1 &625147953
 GameObject:
@@ -1751,6 +1756,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minGroundNormalY: 0.65
   gravityModifier: 1
+  IsGrounded: 0
   velocity: {x: 0, y: 0}
   rb2d: {fileID: 769987671}
   rb2dThatWeCast: {fileID: 674740109}
@@ -3100,9 +3106,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDamage: 10
   cooldownTime: 1
+  attackLength: 5
   attackCollider: {fileID: 1234462996}
   hitboxSprite: {fileID: 1234462994}
   playerPhysics: {fileID: 1538096533}
+  attackText: {fileID: 0}
 --- !u!61 &1234462996
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3868,6 +3876,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minGroundNormalY: 0.65
   gravityModifier: 1
+  IsGrounded: 0
   velocity: {x: 0, y: 0}
   rb2d: {fileID: 1415194550}
   rb2dThatWeCast: {fileID: 1538096534}
@@ -4005,6 +4014,31 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1559987452 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3808759250327569469, guid: a5256dcea3b354544b86996d1afaf469,
+    type: 3}
+  m_PrefabInstance: {fileID: 426678152}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1559987453
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1559987452}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b5693594423a17e4ab5a15c587b29347, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1562377841
 GameObject:
   m_ObjectHideFlags: 0
@@ -4117,7 +4151,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1562377841}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 69.12, y: 2.37, z: -176.68506}
+  m_LocalPosition: {x: -1.9399986, y: 2.3600001, z: -176.68506}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4346,9 +4380,9 @@ MonoBehaviour:
   maxHp: 100
   currentHp: 0
   isDead: 0
-  hpUiBox: {fileID: 1831923844}
   updatedRespawnPoint: {x: 0, y: 0}
   player: {fileID: 769987669}
+  tmesh: {fileID: 0}
 --- !u!114 &1701752347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4362,6 +4396,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPhysics: {fileID: 674740108}
+  MainRigidbody2D: {fileID: 0}
+  MainTransform: {fileID: 0}
 --- !u!61 &1701752348
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4421,6 +4457,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minGroundNormalY: 0.65
   gravityModifier: 1
+  IsGrounded: 0
   velocity: {x: 0, y: 0}
   rb2d: {fileID: 633029451}
   rb2dThatWeCast: {fileID: 1781950651}
@@ -4539,9 +4576,9 @@ MonoBehaviour:
   maxHp: 100
   currentHp: 0
   isDead: 0
-  hpUiBox: {fileID: 1831923844}
   updatedRespawnPoint: {x: 0, y: 0}
   player: {fileID: 633029449}
+  tmesh: {fileID: 0}
 --- !u!114 &1811930914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4555,6 +4592,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPhysics: {fileID: 1781950650}
+  MainRigidbody2D: {fileID: 0}
+  MainTransform: {fileID: 0}
 --- !u!61 &1811930915
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4986,9 +5025,9 @@ MonoBehaviour:
   maxHp: 100
   currentHp: 0
   isDead: 0
-  hpUiBox: {fileID: 1831923844}
   updatedRespawnPoint: {x: 0, y: 0}
   player: {fileID: 2037833334}
+  tmesh: {fileID: 0}
 --- !u!114 &2009320177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5002,6 +5041,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPhysics: {fileID: 2101582627}
+  MainRigidbody2D: {fileID: 0}
+  MainTransform: {fileID: 0}
 --- !u!61 &2009320178
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10992,6 +11033,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minGroundNormalY: 0.65
   gravityModifier: 1
+  IsGrounded: 0
   velocity: {x: 0, y: 0}
   rb2d: {fileID: 2037833336}
   rb2dThatWeCast: {fileID: 2101582628}

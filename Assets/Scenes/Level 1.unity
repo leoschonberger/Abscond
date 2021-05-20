@@ -720,9 +720,9 @@ MonoBehaviour:
   maxHp: 100
   currentHp: 0
   isDead: 0
-  hpUiBox: {fileID: 2054836134}
   updatedRespawnPoint: {x: 0, y: 0}
   player: {fileID: 1045100981}
+  tmesh: {fileID: 0}
 --- !u!114 &182804239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -736,6 +736,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPhysics: {fileID: 849315002}
+  MainRigidbody2D: {fileID: 0}
+  MainTransform: {fileID: 0}
 --- !u!61 &182804240
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3014,21 +3016,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1392470457
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1392470454}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ef105e11cd66b946934c2c70d16622b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerController: {fileID: 1085976201}
-  facingRight: 1
-  anim: {fileID: 1392470455}
 --- !u!50 &1392470458
 Rigidbody2D:
   serializedVersion: 4
@@ -3136,9 +3123,9 @@ MonoBehaviour:
   maxHp: 100
   currentHp: 0
   isDead: 0
-  hpUiBox: {fileID: 27666981}
   updatedRespawnPoint: {x: 0, y: 0}
   player: {fileID: 1392470454}
+  tmesh: {fileID: 0}
 --- !u!1 &1403930634
 GameObject:
   m_ObjectHideFlags: 0
@@ -3337,6 +3324,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPhysics: {fileID: 646807544}
+  MainRigidbody2D: {fileID: 0}
+  MainTransform: {fileID: 0}
 --- !u!114 &1585165975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3352,9 +3341,9 @@ MonoBehaviour:
   maxHp: 100
   currentHp: 0
   isDead: 0
-  hpUiBox: {fileID: 2054836134}
   updatedRespawnPoint: {x: 0, y: 0}
   player: {fileID: 183173959}
+  tmesh: {fileID: 0}
 --- !u!1 &1595276771
 GameObject:
   m_ObjectHideFlags: 0
@@ -3667,7 +3656,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.89, y: 2.89}
+    oldSize: {x: 6.88, y: 2.83}
     newSize: {x: 4.89, y: 2.89}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -3690,9 +3679,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDamage: 10
   cooldownTime: 1
+  attackLength: 5
   attackCollider: {fileID: 1651664004}
   hitboxSprite: {fileID: 1651664006}
   playerPhysics: {fileID: 1085976201}
+  attackText: {fileID: 0}
 --- !u!212 &1651664006
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4136,7 +4127,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.89, y: 2.89}
+    oldSize: {x: 6.88, y: 2.83}
     newSize: {x: 4.89, y: 2.89}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -4543,9 +4534,9 @@ MonoBehaviour:
   maxHp: 100
   currentHp: 0
   isDead: 0
-  hpUiBox: {fileID: 2054836134}
   updatedRespawnPoint: {x: 0, y: 0}
   player: {fileID: 664200151}
+  tmesh: {fileID: 0}
 --- !u!114 &2043047346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4559,6 +4550,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPhysics: {fileID: 1344901884}
+  MainRigidbody2D: {fileID: 0}
+  MainTransform: {fileID: 0}
 --- !u!61 &2043047347
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4711,9 +4704,9 @@ MonoBehaviour:
   maxHp: 100
   currentHp: 0
   isDead: 0
-  hpUiBox: {fileID: 2054836134}
   updatedRespawnPoint: {x: 0, y: 0}
   player: {fileID: 106327106}
+  tmesh: {fileID: 0}
 --- !u!114 &2084440745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4727,6 +4720,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPhysics: {fileID: 1135303616}
+  MainRigidbody2D: {fileID: 0}
+  MainTransform: {fileID: 0}
 --- !u!61 &2084440746
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5003,6 +4998,16 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4415905744294359199, guid: f69575b41b3956c48ba63ab7f49cb268,
+        type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 1392470455}
+    - target: {fileID: 4415905744294359199, guid: f69575b41b3956c48ba63ab7f49cb268,
+        type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1085976201}
     - target: {fileID: 7980419914826351276, guid: f69575b41b3956c48ba63ab7f49cb268,
         type: 3}
       propertyPath: m_Size.x

@@ -177,7 +177,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPhysics: {fileID: 1143396182428929407}
   MainRigidbody2D: {fileID: 0}
-  MainTransform: {fileID: 0}
+  MainTransform: {fileID: 8697649244070406139}
   respawnLocation: {x: 0, y: 0, z: 0}
 --- !u!1 &4932859686321004795
 GameObject:

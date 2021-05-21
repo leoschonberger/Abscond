@@ -7,10 +7,12 @@ public class DeathPitRespawn : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        //Debug.Log("hello");
+        
         if (other.gameObject.CompareTag("Enemy"))
         {
-            other.gameObject.GetComponentInParent<Transform>().position = other.gameObject.GetComponent<CollisionDetection>().respawnLocation;
+            Debug.Log("hello");
+            var collisionDetection = other.GetComponent<CollisionDetection>();
+            collisionDetection.MainTransform.position = collisionDetection.respawnLocation;
         }
         
         //other.gameObject.transform.position = other.gameObject.GetComponent<PlayerController>().respawnLocation;

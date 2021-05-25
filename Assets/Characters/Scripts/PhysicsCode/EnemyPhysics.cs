@@ -83,9 +83,9 @@ namespace Characters.Scripts.PhysicsCode
                     
             //Step 1: check for if you are hitting a collider
             
-            Debug.Log(move);
-            Debug.Log("fixedDeltaTime: " +Time.fixedDeltaTime);
-            Debug.Log("velocity "+ velocity);
+            //Debug.Log(move);
+            //Debug.Log("fixedDeltaTime: " +Time.fixedDeltaTime);
+            //Debug.Log("velocity "+ velocity);
             var distance = move.magnitude;
             //Debug.Log(move);
             var count= rb2dThatWeCast.Cast(move, ContactFilter, HitBuffer, distance + ShellRadius); //Counts the colliders we will contact within the next frame
@@ -94,7 +94,7 @@ namespace Characters.Scripts.PhysicsCode
                 HitBufferList.Add(HitBuffer[i]);
             for (int i = 0; i < count; i++)
             {
-                Debug.Log(HitBufferList[i].collider.gameObject.name);
+                //Debug.Log(HitBufferList[i].collider.gameObject.name);
                 var currentNormal = HitBufferList[i].normal;
                 var angleOfCollider = new Vector2(currentNormal.y, -currentNormal.x); //This is the correct vector now
 
@@ -111,7 +111,7 @@ namespace Characters.Scripts.PhysicsCode
                     colliderAngle = (float)Math.Atan(angleOfCollider.y / angleOfCollider.x)*Mathf.Rad2Deg; //This is the angle of the ground
                 
                 //Step 3: calculate new angle to bounce
-                Debug.Log("collider angle: " +colliderAngle + "current angle: " + currentAngle);
+                //Debug.Log("collider angle: " +colliderAngle + "current angle: " + currentAngle);
                 currentAngle = 2 * colliderAngle - currentAngle;// this should be our bouncy angle 
                 //Debug.Log(currentAngle);
                 

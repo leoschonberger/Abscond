@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Runtime.CompilerServices;
+using Characters.Scripts.PhysicsCode;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -10,11 +12,16 @@ namespace Characters.Scripts
     {
         public int maxHp;
         public int currentHp;
+        public float deathTimer;
+        
         public bool isDead = false;
+        
         public Vector2 updatedRespawnPoint;
         public GameObject player;
-        public TextMeshPro tmesh;
+        public TextMesh tmesh;
+        public GameObject DeathImage;
 
+        public PlayerController playerController;
 
         // Start is called before the first frame update
         //Sets Ui box value and starting HP
@@ -74,9 +81,31 @@ namespace Characters.Scripts
        {
            Debug.Log("Respawning Player");
            Heal(maxHp);
+
+           var death = DeathLength();
+           StartCoroutine(death);
+
+       }
+
+       private IEnumerator DeathLength()
+       {
+           playerController.enabled = false;
+           DeathImage.SetActive(true);
+           yield return new WaitForSeconds(deathTimer);
+           DeathImage.SetActive(false);
+           playerController.enabled = true;
+           playerController.velocity = Vector2.zero;
            player.transform.position = updatedRespawnPoint;
            isDead = false;
+       }
 
+       private void OnTriggerEnter2D(Collider2D other)
+       {
+           if (other.gameObject.layer == 12) //If we land in the death pit
+           {
+               Respawn();
+           }
+           //throw new NotImplementedException();
        }
     }
 }

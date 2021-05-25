@@ -9,6 +9,7 @@ namespace Characters.Scripts.PhysicsCode
         public float minGroundNormalY = 0.65f;
         public float gravityModifier = 1f;
 
+        public Vector3 respawnLocation;
         
         public bool IsGrounded;
         protected Vector2 GroundNormal = Vector2.up;
@@ -33,6 +34,7 @@ namespace Characters.Scripts.PhysicsCode
 
         void Start()
         {
+            respawnLocation = gameObject.transform.position;
             ContactFilter.useTriggers= false;
             ContactFilter.SetLayerMask(Physics2D.GetLayerCollisionMask(gameObject.layer));
             //Debug.Log(Time.timeScale);

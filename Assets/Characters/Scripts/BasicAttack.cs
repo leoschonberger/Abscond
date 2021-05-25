@@ -13,9 +13,9 @@ namespace Characters.Scripts
         public float cooldownTime = 1f;
         public float attackLength = 5f;
 
-        private float _timeLeftInAttack = -1; //set at -1 so that the hitbox comes out on first click, (first if statement in update function runs without touching anybody otherwise)
+        private float _timeLeftInAttack; 
 
-        private bool _isCooldown = false;
+        private bool _isCooldown;
 
         public BoxCollider2D attackCollider;
         public SpriteRenderer hitboxSprite;
@@ -39,7 +39,7 @@ namespace Characters.Scripts
             {
                 
                 double roundedTimeLeftInAttack = 0;
-                if (_timeLeftInAttack >= 0)
+                if (_timeLeftInAttack > 0)
                 {
                     //Debug.Log("hello");
                     attackText.gameObject.SetActive(true);
@@ -47,10 +47,11 @@ namespace Characters.Scripts
                     roundedTimeLeftInAttack = Math.Round(_timeLeftInAttack,2);
                 }
                 
-                if (roundedTimeLeftInAttack < 0)
+                if (_timeLeftInAttack < 0)
                 {
+                    Debug.Log("hello");
                     attackText.gameObject.SetActive(false);
-                    _timeLeftInAttack = -1;
+                    _timeLeftInAttack = 0;
                     var cooldown = Cooldown();
                     StartCoroutine(cooldown);
                     return;

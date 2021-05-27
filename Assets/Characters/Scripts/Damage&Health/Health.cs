@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Runtime.CompilerServices;
+using System.Threading;
+using System.Threading.Tasks;
 using Characters.Scripts.PhysicsCode;
 using TMPro;
 using UnityEngine;
@@ -13,6 +15,7 @@ namespace Characters.Scripts
         public int maxHp;
         public int currentHp;
         public float deathTimer;
+        public int DeathCountdown;
         
         public bool isDead = false;
         
@@ -63,7 +66,10 @@ namespace Characters.Scripts
                 }
                 else if (player.tag == "Enemy")
                 {
+                     
                     //TODO: Make Enemy Death Animation
+                    var deathAnimation = EnemyDeathAnimationWindow();
+                    StartCoroutine(deathAnimation);
                     Destroy(player);
                 }
             }
@@ -87,6 +93,10 @@ namespace Characters.Scripts
 
        }
 
+       private IEnumerator EnemyDeathAnimationWindow()
+       {
+           yield return new WaitForSeconds(2);
+       }
        private IEnumerator DeathLength()
        {
            playerController.enabled = false;

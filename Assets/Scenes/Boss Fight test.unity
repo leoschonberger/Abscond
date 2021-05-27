@@ -173,10 +173,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 100
   currentHp: 0
+  deathTimer: 0
+  DeathCountdown: 0
   isDead: 0
   updatedRespawnPoint: {x: 0, y: 0}
   player: {fileID: 999020376}
-  tmesh: {fileID: 1767804153}
+  tmesh: {fileID: 0}
+  DeathImage: {fileID: 0}
+  playerController: {fileID: 0}
 --- !u!1001 &742836294
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -295,6 +299,39 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 4641433675553730509}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &999020379
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999020376}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4bf25496820796f498f846246ea03080, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &999020380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999020376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93c3dbbefca2e794c9513ab79e97bc46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HealthScript: {fileID: 551282008}
+  anim: {fileID: 999020379}
 --- !u!224 &1066076913
 RectTransform:
   m_ObjectHideFlags: 0
@@ -468,6 +505,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d65f52ecb1b335f42877b09bd025c88c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsAttacking: 0
   firePoint: {fileID: 2034285210}
   startTimeBetweenShots: 5
   isGrounded: 1
@@ -732,18 +770,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 996a04865f573684c842cf184c0da896, type: 3}
---- !u!114 &1767804153 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4913275778036968027, guid: 44b9e4755f60a6f4aa20fb8d05585704,
-    type: 3}
-  m_PrefabInstance: {fileID: 4641433675553730509}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1835761144
 GameObject:
   m_ObjectHideFlags: 0
@@ -1138,6 +1164,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4641433675856877580, guid: 44b9e4755f60a6f4aa20fb8d05585704,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4641433675856877580, guid: 44b9e4755f60a6f4aa20fb8d05585704,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4641433675856877580, guid: 44b9e4755f60a6f4aa20fb8d05585704,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4641433675856877581, guid: 44b9e4755f60a6f4aa20fb8d05585704,
         type: 3}
       propertyPath: m_Layer
@@ -1175,13 +1216,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4641433676700028489, guid: 44b9e4755f60a6f4aa20fb8d05585704,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4641433676700028489, guid: 44b9e4755f60a6f4aa20fb8d05585704,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4641433676700028489, guid: 44b9e4755f60a6f4aa20fb8d05585704,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4641433676700028489, guid: 44b9e4755f60a6f4aa20fb8d05585704,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.306
       objectReference: {fileID: 0}
     - target: {fileID: 4641433676700028489, guid: 44b9e4755f60a6f4aa20fb8d05585704,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.382
+      value: -0.8
       objectReference: {fileID: 0}
     - target: {fileID: 4641433676700028489, guid: 44b9e4755f60a6f4aa20fb8d05585704,
         type: 3}
@@ -1824,10 +1880,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 100
   currentHp: 0
+  deathTimer: 0
+  DeathCountdown: 0
   isDead: 0
   updatedRespawnPoint: {x: 0, y: 0}
   player: {fileID: 8749986840106706653}
-  tmesh: {fileID: 1835761146}
+  tmesh: {fileID: 0}
+  DeathImage: {fileID: 0}
+  playerController: {fileID: 0}
 --- !u!61 &8739150812622643716
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1892,6 +1952,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minGroundNormalY: 0.65
   gravityModifier: 1
+  respawnLocation: {x: 0, y: 0, z: 0}
   IsGrounded: 0
   velocity: {x: 0, y: 0}
   rb2d: {fileID: 8739150812383913269}

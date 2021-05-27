@@ -31,15 +31,9 @@ public class Rocket : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.layer == 11)
-        {
-            rb.velocity = Vector2.zero;
-            //rb.velocity = attackVelocity;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        if (other.gameObject.layer == 11) return;
+        Destroy(gameObject);
+        
         //throw new NotImplementedException();
     }
 

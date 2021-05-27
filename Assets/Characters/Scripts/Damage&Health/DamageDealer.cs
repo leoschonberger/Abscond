@@ -13,11 +13,23 @@ namespace Characters.Scripts
         {
             if (other.gameObject != null)
             {
-                if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Player"))
-                {
-                    other.GetComponent<Health>().TakeDamage(damage);
-                    Debug.Log("Damage given to: " + other.gameObject.name + "From :" + this.gameObject.name + " HP is now: " + other.GetComponent<Health>().currentHp);
-                }
+               
+
+                    switch (other.gameObject.layer)
+                    {
+                        case 10:
+                            other.GetComponent<Health>().TakeDamage(damage);
+                            Debug.Log("Damage given to: " + other.gameObject.name + "From :" + this.gameObject.name + " HP is now: " + other.GetComponent<Health>().currentHp);
+                            break;
+                        case 17:
+                            other.GetComponent<EnemyHealth>().TakeDamage(damage);
+                            Debug.Log("Damage given to: " + other.gameObject.name + "From :" + this.gameObject.name);
+                            break;
+                        default:
+                            
+                            return;
+                    }
+                
             }
         }
     }

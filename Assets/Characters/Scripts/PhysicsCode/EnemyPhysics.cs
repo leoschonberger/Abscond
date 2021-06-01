@@ -33,6 +33,7 @@ namespace Characters.Scripts.PhysicsCode
                     velocity.x /= 2;
                     velocity.y /= 2;
                     currentAngle = 0; //resets the current angle
+                    //Debug.Log("hellooo");
                 }
             }
             GroundedCheck();
@@ -85,6 +86,9 @@ namespace Characters.Scripts.PhysicsCode
             
             //Debug.Log(move);
             //Debug.Log("fixedDeltaTime: " +Time.fixedDeltaTime);
+            if (inBulletTime)
+                return;
+            
             //Debug.Log("velocity "+ velocity);
             var distance = move.magnitude;
             //Debug.Log(move);

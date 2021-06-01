@@ -24,7 +24,7 @@ namespace Characters.Scripts
 
         protected virtual void OnTriggerEnter2D(Collider2D collision)
         {
-            Debug.Log("hello");
+            //Debug.Log("hello");
             switch (collision.gameObject.layer)
             {
                 case 12: //Death Pit

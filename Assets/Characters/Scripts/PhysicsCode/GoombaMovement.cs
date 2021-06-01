@@ -25,7 +25,7 @@ namespace Characters.Scripts.PhysicsCode
 
 		void OnTriggerEnter2D(Collider2D collider)
 		{
-			Debug.Log(collider.gameObject.layer);
+			//Debug.Log(collider.gameObject.layer);
 			if (collider.gameObject.layer == 14)
 			{
 				horizontalSpeed *= -1;

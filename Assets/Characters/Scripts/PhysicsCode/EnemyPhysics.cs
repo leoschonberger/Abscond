@@ -21,9 +21,10 @@ namespace Characters.Scripts.PhysicsCode
 
         protected override void ComputeVelocity()
         {
-			enemyMovement();
+            enemyMovement();
             if (timeLeftInBounce > 0)
             {
+                //Debug.Log(Time.deltaTime);
                 timeLeftInBounce -= Time.deltaTime;
                 if (timeLeftInBounce<= 0)
                 {
@@ -86,8 +87,8 @@ namespace Characters.Scripts.PhysicsCode
             
             //Debug.Log(move);
             //Debug.Log("fixedDeltaTime: " +Time.fixedDeltaTime);
-            if (inBulletTime)
-                return;
+            /*if (inBulletTime)
+                return;*/
             
             //Debug.Log("velocity "+ velocity);
             var distance = move.magnitude;

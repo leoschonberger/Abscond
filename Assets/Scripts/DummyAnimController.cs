@@ -5,12 +5,13 @@ using UnityEngine;
 
 public class DummyAnimController : MonoBehaviour
 {
-    public Health healthScript;
-    private int health => healthScript.currentHp;
+    public EnemyHealth healthScript;
+    private int health => healthScript.currentHealth;
     public Animator anim;
-    
+    private static readonly int Health = Animator.StringToHash("health");
+
     void Update()
     {
-        anim.SetInteger("health",health);
+        anim.SetInteger(Health,health);
     }
 }

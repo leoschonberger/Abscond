@@ -550,6 +550,7 @@ MonoBehaviour:
   healthText: {fileID: 2127522790}
   startingHealth: 100
   parentGameObject: {fileID: 838085117}
+  currentHealth: 0
 --- !u!1 &122327438
 GameObject:
   m_ObjectHideFlags: 0
@@ -949,12 +950,12 @@ PrefabInstance:
     - target: {fileID: 6535394194373215664, guid: e0531724cb45cbd4b9c81a43e57c4190,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 104.64
+      value: -3.08
       objectReference: {fileID: 0}
     - target: {fileID: 6535394194373215664, guid: e0531724cb45cbd4b9c81a43e57c4190,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.69
+      value: -0.97
       objectReference: {fileID: 0}
     - target: {fileID: 6535394194373215664, guid: e0531724cb45cbd4b9c81a43e57c4190,
         type: 3}

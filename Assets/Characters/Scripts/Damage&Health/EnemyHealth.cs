@@ -10,7 +10,7 @@ public class EnemyHealth : MonoBehaviour
     public int startingHealth = 100;
 
     public GameObject parentGameObject;
-    private int currentHealth;
+    public int currentHealth;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,19 +25,16 @@ public class EnemyHealth : MonoBehaviour
     {
         currentHealth -= damageToTake;
         if (currentHealth <= 0)
-        {
             Die();
-        }
+        
 
         if (healthText != null)
-        {
-            Debug.Log("lkjhdsfa");
             healthText.text = "HP: " + currentHealth;
-        }
+        
 
     }
 
-    public virtual void Die() //Make this a virtual method in case we want to do more later. Public in case we need one shot kill for something;
+    protected virtual void Die() //Make this a virtual method in case we want to do more later. Public in case we need one shot kill for something;
     {
         parentGameObject.SetActive(false);
     }

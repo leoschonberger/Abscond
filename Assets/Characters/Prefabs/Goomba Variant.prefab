@@ -94,6 +94,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minGroundNormalY: 0.65
   gravityModifier: 1
+  respawnLocation: {x: 0, y: 0, z: 0}
+  IsGrounded: 0
   velocity: {x: 0, y: 0}
   rb2d: {fileID: 183173961}
   rb2dThatWeCast: {fileID: 646807545}
@@ -194,8 +196,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1585165972}
   - component: {fileID: 1585165973}
-  - component: {fileID: 1585165975}
   - component: {fileID: 1585165974}
+  - component: {fileID: 7004856356111585913}
   m_Layer: 10
   m_Name: Enemy Hurtbox
   m_TagString: Enemy
@@ -243,24 +245,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 9.744654, y: 9.374984}
   m_EdgeRadius: 0
---- !u!114 &1585165975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1585165971}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ae0dd69150b8b947b973faf53ab224f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHp: 100
-  currentHp: 0
-  isDead: 0
-  updatedRespawnPoint: {x: 0, y: 0}
-  player: {fileID: 3429569536686977234}
-  tmesh: {fileID: 969073414517578343}
 --- !u!114 &1585165974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,7 +258,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPhysics: {fileID: 646807546}
+  MainRigidbody2D: {fileID: 183173961}
+  MainTransform: {fileID: 1394162098383796178}
+  respawnLocation: {x: 0, y: 0, z: 0}
   goombaMovement: {fileID: 646807546}
+--- !u!114 &7004856356111585913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1585165971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45455eeb344240c6a75c7cf505d2e255, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthText: {fileID: 969073414517578343}
+  startingHealth: 100
+  parentGameObject: {fileID: 3429569536686977234}
+  currentHealth: 0
+  deathLength: 1
 --- !u!1 &1996458252
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,6 +345,40 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &606287283814311708
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3429569536686977234}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cb1341c8bc5e1a14ebe8f04a0ea63e54, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5393036804309847134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3429569536686977234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6306363e217a3541b96fb0543872ca8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthScript: {fileID: 7004856356111585913}
+  GoombaMovement: {fileID: 646807546}
+  anim: {fileID: 606287283814311708}
 --- !u!1001 &1184281021270505548
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -458,6 +496,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1798970977004859606, guid: 472a2d9e5d0748e43ab2697f71850115,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2140474, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
     - target: {fileID: 2098042401121165867, guid: 472a2d9e5d0748e43ab2697f71850115,
         type: 3}
       propertyPath: m_fontSize
@@ -465,9 +508,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2098042401121165867, guid: 472a2d9e5d0748e43ab2697f71850115,
         type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2,
+        type: 2}
+    - target: {fileID: 2098042401121165867, guid: 472a2d9e5d0748e43ab2697f71850115,
+        type: 3}
       propertyPath: m_fontSizeBase
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 2098042401121165867, guid: 472a2d9e5d0748e43ab2697f71850115,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2140474, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 472a2d9e5d0748e43ab2697f71850115, type: 3}
 --- !u!114 &969073414517578343 stripped
@@ -503,7 +557,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 4a45e0e4ca09bab4680195beb8245419,
+      objectReference: {fileID: 21300000, guid: 0c03c39082b90864292189f94e4cd273,
         type: 3}
     - target: {fileID: 4945278102248748265, guid: d9b47c4dba74d0c4c8ba9b1c4bdde881,
         type: 3}

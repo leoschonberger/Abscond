@@ -24,7 +24,7 @@ namespace Characters.Scripts
 
         protected virtual void OnTriggerEnter2D(Collider2D collision)
         {
-            
+            Debug.Log("hello");
             switch (collision.gameObject.layer)
             {
                 case 12: //Death Pit
@@ -54,6 +54,7 @@ namespace Characters.Scripts
 
         private void OnTriggerExit2D(Collider2D other)
         {
+            Debug.Log(other.gameObject.name);
             switch (other.gameObject.layer)
             {
                 case 12:

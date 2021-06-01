@@ -60,7 +60,7 @@ namespace Characters.Scripts.PhysicsCode
             }
             if (inBounceMode) //do bounce physics when you are in bounce mode
             {
-                //Debug.Log("bounce mode "+ velocity);
+                Debug.Log("bounce mode "+ velocity);
                 //var previousVelocity = velocity;
                 bouncePhysics(velocity * Time.fixedDeltaTime);
                 

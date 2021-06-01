@@ -8,7 +8,7 @@ public class DummyAnimController : MonoBehaviour
     public EnemyHealth healthScript;
     private int health => healthScript.currentHealth;
     public Animator anim;
-    private static readonly int Health = Animator.StringToHash("health");
+    private static readonly int Health = Animator.StringToHash("Health");
 
     /*void Update()
     {

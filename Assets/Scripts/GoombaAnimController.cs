@@ -12,7 +12,7 @@ public class GoombaAnimController : MonoBehaviour
     private bool IsGrounded;
     private bool FacingRight;
     public Animator anim;
-    private static readonly int Health = Animator.StringToHash("health");
+    //private static readonly int Health = Animator.StringToHash("health");
     private static readonly int Moving = Animator.StringToHash("IsMoving");
     private Vector2 velocity => GoombaMovement.velocity;
     private int health => healthScript.currentHealth;
@@ -30,8 +30,8 @@ public class GoombaAnimController : MonoBehaviour
         {
             IsMoving = false;
         }
-        anim.SetInteger(Health,health);
-        anim.SetBool(Moving,IsMoving);
+        //anim.SetInteger(Health,health);
+        //anim.SetBool(Moving,IsMoving);
     }
     void FlipCharacter()
     {

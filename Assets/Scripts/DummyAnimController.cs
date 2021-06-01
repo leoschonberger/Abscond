@@ -10,8 +10,9 @@ public class DummyAnimController : MonoBehaviour
     public Animator anim;
     private static readonly int Health = Animator.StringToHash("health");
 
-    void Update()
+    /*void Update()
     {
         anim.SetInteger(Health,health);
     }
+    */
 }

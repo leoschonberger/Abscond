@@ -35,10 +35,12 @@ public class Projectiles : MonoBehaviour
         angleTowardsPlayer = player.position - enemy.position;
         angleTowardsPlayer.Normalize();
 
-        var castDistance = distance;
         Vector2 endPosition = enemy.position + ((Vector3) angleTowardsPlayer * distance);
-        RaycastHit2D hitPlayer = Physics2D.Linecast(enemy.position, endPosition, 1 << LayerMask.NameToLayer("Player"));
-        RaycastHit2D hitWall = Physics2D.Linecast(enemy.position, endPosition, 1 << LayerMask.NameToLayer("Default"));
+        var hitPlayer = Physics2D.Linecast(enemy.position, endPosition, 1 << LayerMask.NameToLayer("Player"));
+        var hitWall = Physics2D.Linecast(enemy.position, endPosition, 1 << LayerMask.NameToLayer("Default"));
+        
+     
+
         if (hitPlayer.collider != null && hitWall.collider != null)
         {
             if (Vector2.Distance(hitPlayer.collider.gameObject.transform.position, enemy.position)
@@ -57,6 +59,7 @@ public class Projectiles : MonoBehaviour
         {
             if (canSeePlayer(visibilityDistance))
             {
+                Debug.Log(Vector2.Distance(enemy.position, player.position));
                 IsAttacking = true;
                 Shoot();
                 timeBetweenShots = startTimeBetweenShots;

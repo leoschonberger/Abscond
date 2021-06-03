@@ -8,7 +8,7 @@ public class LevelTeleport : MonoBehaviour
 {
     // Start is called before the first frame update
     public Transform playerTransform;
-    public Transform teleporter;
+    private Transform teleporter;
     public String nextLevel;
     void Start()
     {

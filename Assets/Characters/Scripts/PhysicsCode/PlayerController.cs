@@ -8,7 +8,7 @@ namespace Characters.Scripts.PhysicsCode
 {
     public class PlayerController : BasicPhysics
     {
-        public GameObject arm;
+        //public GameObject arm;
         //public GameObject attackLengthObject;
         //public TextMesh timeLeftInAttackText;
         
@@ -18,7 +18,8 @@ namespace Characters.Scripts.PhysicsCode
         [Range(0.1f,0.5f)] public float timeOfDash = 0.1f; 
         [Range(14,56)] public float speedOfDash = 14f;
         [Range(14, 56)] public float attackStrength = 14f;
-        
+
+        public ComboSystem comboSystem;
         
         private float _timeLeftInDash;
         private Vector2 _dashDirection = Vector2.zero;
@@ -102,14 +103,18 @@ namespace Characters.Scripts.PhysicsCode
             base.EnterBulletTime();
             Time.timeScale = 0.02f;
             Time.fixedDeltaTime *= Time.timeScale;
-            arm.SetActive(true);
+            //arm.SetActive(true);
             //attackLengthObject.SetActive(true);
         }
 
+        protected override void OnLanding()
+        {
+            comboSystem.resetComboCounter();
+        }
         public override void ExitBulletTime()
         {
             base.ExitBulletTime();
-            arm.SetActive(false);
+            //arm.SetActive(false);
             //attackLengthObject.SetActive(false);
             _timeLeftInDash = 0; //Resets our dash!
             velocity = Vector2.zero;
@@ -124,7 +129,10 @@ namespace Characters.Scripts.PhysicsCode
             Time.fixedDeltaTime = 0.02f;
 
             velocity = attackVelocity;
-
+            
+            if (!IsGrounded)
+                comboSystem.incrementComboCounter(); //Starts the combo!
+            
             if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
                 Input.ResetInputAxes(); //We need this because unity is dumb and tries to pretend that wasd is analog instead of digital and messes everything up.
         }

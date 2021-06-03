@@ -13,6 +13,8 @@ namespace Characters.Scripts
         public float cooldownTime = 1f;
         public float attackLength = 5f;
 
+        public float originalAttackLength = 5f;
+        
         private float _timeLeftInAttack; 
 
         private bool _isCooldown;
@@ -68,6 +70,8 @@ namespace Characters.Scripts
             {
                 attackCollider.enabled = false;
                 hitboxSprite.enabled = false;
+                attackText.gameObject.SetActive(false);
+                _timeLeftInAttack = 0;
                 //Debug.Log("The Collider has been disabled");
             }
         }

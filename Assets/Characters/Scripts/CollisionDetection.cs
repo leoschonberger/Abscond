@@ -13,7 +13,8 @@ namespace Characters.Scripts
         public Transform MainTransform;
 
         public Vector3 respawnLocation;
-        
+
+        public GameObject arrow;
         private Vector2 previousVelocity;
 
         private void Start()
@@ -46,7 +47,7 @@ namespace Characters.Scripts
                 }
                 default:
                     enemyPhysics.EnterBulletTime();
-
+                    arrow.SetActive(true);
                     //Debug.Log(collision.gameObject.name + " : " + gameObject.name + " : " + Time.time);
                     break;
             }
@@ -63,6 +64,7 @@ namespace Characters.Scripts
                     return;
                 default:
                     enemyPhysics.ExitBulletTime();
+                    arrow.SetActive(false);
                     break;
             }
         }

@@ -58,6 +58,8 @@ namespace Characters.Scripts.PhysicsCode
                 IsGrounded = false;
                 return;
             }
+
+            var groundedCheck = IsGrounded;
             if (inBounceMode) //do bounce physics when you are in bounce mode
             {
                 Debug.Log("bounce mode "+ velocity);
@@ -97,8 +99,14 @@ namespace Characters.Scripts.PhysicsCode
             move = Vector2.up * deltaPosition.y;
         
             Movement(move, true); //moves along y
-        
+
+            if (IsGrounded && !groundedCheck) //Checks for when you go from the air to the ground
+                OnLanding();
+            
+                
         }
+
+        protected virtual void OnLanding() { }
         
         protected virtual void bouncePhysics(Vector2 move){}
         

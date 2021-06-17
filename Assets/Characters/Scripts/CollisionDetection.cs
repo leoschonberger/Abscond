@@ -45,6 +45,8 @@ namespace Characters.Scripts
                 
                     return;
                 }
+                case 21:
+                    return;
                 default:
                     enemyPhysics.EnterBulletTime();
                     arrow.SetActive(true);
@@ -61,6 +63,7 @@ namespace Characters.Scripts
                 case 12:
                 case 14:
                 case 20:
+                case 21:
                     return;
                 default:
                     enemyPhysics.ExitBulletTime();
